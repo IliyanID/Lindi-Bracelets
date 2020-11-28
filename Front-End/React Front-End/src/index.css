@@ -26,6 +26,7 @@
       text-decoration: none;
       
       
+      
   }
   
   body{
@@ -33,4 +34,10 @@
       background-size: cover;
       background-position:center;*/
       font-family: 'Ostrich Bold',monospace;
+      background-color:#808080
   }
+
+  html, body {
+    height: 100%;
+    overflow: hidden;
+}

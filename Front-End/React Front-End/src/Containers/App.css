@@ -7,14 +7,187 @@ Colors:
 
 */
 
+#main-container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  overflow: auto;
+  overflow-x:hidden;
+  margin:0px;
+  list-style-type:none;
+}
+
+::-webkit-scrollbar {
+width:0;
+}
+
 .navBar{
-  text-align:right;
-  margin: 10px;
-  position:sticky;
+  position:fixed;
+  text-align: center;
+  margin: 0px;
+  width:100%;
+
+  left:50%;
+  transform: translate(-50%,0);
+  background-color:#FFF;
+}
+  .navList li{
+    display: inline-block;
+    margin:10px;
+    padding:10px 10px 5px 10px;
+    border-bottom:2px solid #EBD128;
+    border-radius:10px 10px 0px 0px;
+    transition: background-color .5s;
+  }
+    .navList li:hover{
+      background-color:#EBD128;
+    
+    }
+    .navList li a{
+      font-size:180%;
+    }
+    .navSocialMediaIcon{
+      width:30px;
+    }
+
+.lindi{
+  position:absolute;
+  top:70px;
+  font-size:200%;
+  color:#FFF;
+}
+
+.headerText{
+  padding-top:150px;
+  height: 100vh;
+  margin:20px;
+}
+  .headerText h1{
+    padding:20px;
+  }
+    .headerBold{
+      font-family:Ostrich Bold;
+      font-size:900%;
+      color:#EBD128;
+    }
+    .headerReg{
+      font-size:300%;
+    }
+
+.shop ul{
+  margin-left:0vw;
+  margin-right:0px; 
+ 
+  background-image:linear-gradient(rgba(0 0 0 .8),rgba(0 0 0 .8));
+}
+  .shop ul li{
+    display:inline-block;
+    border: 2px solid #000;
+    width:25vw;
+    height:25vw;
+    margin-bottom:-4px;
+    
+    background-size:cover;
+    background-position:center;
+    
+  }
+
+.eventsTitle{
+  background-image:url("../resources/images/background.JPG");
+  background-size:cover;
+  background-position:bottom;
+}
+.eventsTitle h1{
+  padding:50px 0px 0px 50px;
+  font-size:500%;
+ 
+ color:#EBD128;
+}
+  .event{
+    border: 2px solid #FFF;
+    display:inline-block;
+    margin: 5px;
+    padding:7px;
+    background:#FFF;
+    border:2px solid #000;
+    border-radius:20px;
+    text-align: center;
+  }
+    .event p{
+      font-size:150%;
+
+    }
+    .event img{
+      border:1px solid #000;
+      height:300px;
+      border-radius:20px;
+    }
+    .event p a{
+      font-size:120%;
+      border-bottom:2px solid #FFF;
+    }
+
+.contactMe h1{
+  margin:50px 0px 0px 50px;
+  font-size:500%;
+  color:#EBD128;
+}
+  .contactMeForm input, .contactMeForm textArea, .button{
+    position:relative;
+    left:50%;
+    transform: translate(-50%,0);
+    
+    box-shadow:none;
+    border-width:0;
+    outline:none;
+
+    margin-bottom:10px;
+    border:2px solid #FFF;
+    border-radius:20px;
+    padding:10px;
+
+
+    width:80%;
+    font-size:140%;
+    display:block;
+
+    font-family:monospace;
+    
+
+    transition:background-color .5s border-color .5s;
+  }
+  .contactMeForm input:focus, .contactMeForm textArea:focus,.contactMeForm input:hover, .contactMeForm textArea:hover{
+    border-color:#EBD128;
+  }
+
+    .formContent{
+      min-height:400px;
+    }
+
+  .button:hover{
+    background-color:#EBD128;
+    border-color:#EBD128;
+    color:#FFF;
+  }
+  .button{
+    color:#EBD128;
+  }
+
+.socialMedia{
+  background-color:#fff;
+}
+
+.socialMedia li{
+  display:inline-block;
+  float:right;
+  margin:10px
+}
+
+.socialMediaIcon{
+  width:60px;
+
   
 }
 
-.navList li{
-  display: inline;
-  padding:20px;
-}
