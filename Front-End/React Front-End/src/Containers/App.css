@@ -17,13 +17,15 @@ Colors:
   overflow-x:hidden;
   margin:0px;
   list-style-type:none;
-  scroll-behavior: smooth;
+
+
 }
 
 
 
 ::-webkit-scrollbar {
 width:0;
+scroll-behavior: smooth;
 }
 
 
@@ -39,14 +41,20 @@ width:0;
   background-color:#333333;
 
   float:left;
-
-  
+}
+.logo{
+  width:70px;
+  float:left;
+  margin-left:20px;
+  cursor:pointer;
 }
   .navList li{
     list-style: none;
     margin:10px;
     padding:10px 10px 5px 10px;
-    border-bottom:2px solid #EBD128;
+
+    border:solid 2px #333333;
+    border-bottom-color:#EBD128;
     cursor:pointer;
 
     font-size:180%;
@@ -60,7 +68,16 @@ width:0;
     
   }
     .navList li:hover{
+     /* background-color:#EBD128;*/
+      border-color:#EBD128;
+      border-radius:10px;
+      color:#FFF;
+      font-weight: 600;
+      border-radius:10px;
+    }
+    .navListSelected:hover, .navListSelected:not(:hover){
       background-color:#EBD128;
+      border-color:#EBD128;
       color:#FFF;
       font-weight: 600;
       border-radius:10px;
@@ -80,15 +97,21 @@ width:0;
   font-size:200%;
   color:#FFF;
 
-  cursor:pointer;
+  
 }
 
 
 
 .headerText{
+  background-image:linear-gradient(rgba(26, 188, 156, 0.1),rgba(26, 188, 156, 0.1)) , url("../resources/images/HeaderBackgroundedited.png");
+ /*background-image:url("../resources/images/HeaderBackgroundedited.png");*/
+  background-repeat:no-repeat;
+  background-size:cover;
+  background-position: right;
+
   padding-top:150px;
+  padding:170px 20px 20px 20px;
   height: 100vh;
-  margin:20px;
 }
   .headerText h1{
     padding:20px;
@@ -203,10 +226,12 @@ width:0;
 
 
 .contactMe{
+padding-top: 80px;
 padding-bottom:10px;
+height:100vh;
 }
 .contactMe h1{
-  padding:50px 0px 0px 50px;
+  padding:30px 0px 30px 50px;
   font-size:500%;
   color:#EBD128;
 }
@@ -225,7 +250,7 @@ padding-bottom:10px;
     padding:10px;
 
 
-    width:80%;
+    width:700px;
     font-size:140%;
     display:block;
 
@@ -233,7 +258,7 @@ padding-bottom:10px;
     cursor:text;
     
 
-    transition:background-color .5s border-color .5s;
+    transition:background-color .5s ,border .5s, color .5s;
   }
     .contactMeForm input:focus, .contactMeForm textArea:focus,.contactMeForm input:hover, .contactMeForm textArea:hover{
       border-color:#EBD128;
@@ -255,17 +280,31 @@ padding-bottom:10px;
 
 
 .socialMedia ul{
- background-color:#333333;
+  background-color:#000;
+}
+.socialMedia{
+  position:absolute;
+  width:100%;
+  background-image:linear-gradiant(#333333,#333333);
   border:2px solid #333333;
+}
+.socialMedia:not(:hover), .socialMedia:hover{
+  background-color:#333333;
 }
   .socialMedia ul li{
     margin:10px;
     list-style:none;
     float:right;
+
   }
+  .socialMedia p{
+    float:left;
+    color:#FFF;
+    padding:30px;
+    font-size:120%;
+  }
+
     .socialMediaIcon{
       width:60px;
-      cursor:pointer;
-
-      
+      cursor:pointer; 
     }

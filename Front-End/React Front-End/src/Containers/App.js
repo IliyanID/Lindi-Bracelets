@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import './App.css';
 //import { Link } from 'react-scroll';
+import logo from '../resources/images/cilcular-logo-white.png'
 
 import catalog from '../resources/images/bracelts.jpg';
 import stand from '../resources/images/stand.jpg'
@@ -17,13 +18,14 @@ class App extends PureComponent {
   constructor(props)
   {
     super(props)
+    this.Shop = React.createRef();
     this.Events = React.createRef();
     this.AboutMe = React.createRef(); 
     this.ContactMe = React.createRef(); 
   }
   
   state = {
-    temp:""
+    navBarSelected:["","","",""]
   }
 
 
@@ -33,11 +35,28 @@ class App extends PureComponent {
     document.getElementById("main-container").scrollBy(0,-20);
   }
 
-  inViewPort = () =>{
+  checkSelected = () =>{
+    if(this.inViewPort(this.Shop)){
+      this.setState({navBarSelected:["navListSelected","","",""]})
+    }
+   else if(this.inViewPort(this.Events)){
+     this.setState({navBarSelected:["","navListSelected","",""]})
+   }
+   else if(this.inViewPort(this.AboutMe)){
+     this.setState({navBarSelected:["","","navListSelected",""]})
+   }
+   else if(this.inViewPort(this.ContactMe)){
+     this.setState({navBarSelected:["","","","navListSelected"]})
+   }
+   else{
+    this.setState({navBarSelected:["","","",""]})
+   }
+  }
 
+  inViewPort = (ref) =>{
 
     // Get it's position in the viewport
-    var bounding = this.ContactMe.current.getBoundingClientRect();
+    var bounding = ref.current.getBoundingClientRect();
 
     if (
       bounding.top >= 0 &&
@@ -45,9 +64,9 @@ class App extends PureComponent {
       bounding.right <= (window.innerWidth || document.documentElement.clientWidth) &&
       bounding.bottom <= (window.innerHeight || document.documentElement.clientHeight)
     ) {
-      console.log('In the viewport!');
+      return true;
     } else {
-      console.log('Not in the viewport... whomp whomp');
+      return false;
     }
   }
 
@@ -97,30 +116,31 @@ class App extends PureComponent {
 
 
     return (
-      <div id="main-container" onScroll={this.inViewPort}>
+      <div id="main-container" onScroll={this.checkSelected}>
         <nav className="navBar">
-            <ul className="navList socialMedia">
+            <ul className="navList">
                 <li><a href={"https://www.instagram.com/lindibracelets/"} target="_blank" rel="noreferrer"><img className="navSocialMediaIcon"src={instagram} alt="InstagramLogo"/></a></li>
                 <li><a href={"https://www.facebook.com/LinDiBracelets/"} target="_blank" rel="noreferrer"><img className="navSocialMediaIcon"src={facebook} alt="FacebookLogo"/></a></li>
                 <li><a href={"https://www.etsy.com/shop/LinDiBracelets?ref=simple-shop-header-name&listing_id=584303931"} target="_blank" rel="noreferrer"><img className="navSocialMediaIcon"src={etsy} alt="EtsyLogo"/></a></li>
                 
-                <li onClick={()=>{this.scrollTo(this.ContactMe)}}>Contact Me</li>
-                <li onClick={()=>{this.scrollTo(this.AboutMe)}}>About Me</li>
-                <li onClick={()=>{this.scrollTo(this.Events)}}>Events</li>
-                <li>Shop</li>
+                <li className={this.state.navBarSelected[3]} onClick={()=>{this.scrollTo(this.ContactMe)}}>Contact Me</li>
+                <li className={this.state.navBarSelected[2]} onClick={()=>{this.scrollTo(this.AboutMe)}}>About Me</li>
+                <li className={this.state.navBarSelected[1]} onClick={()=>{this.scrollTo(this.Events)}}>Events</li>
+                <li className={this.state.navBarSelected[0]} onClick={()=>{this.scrollTo(this.Shop)}}>Shop</li>
             </ul>
+            <img className="logo"src={logo} alt="logo" onClick={()=>{document.getElementById("main-container").scrollTo(0,0);}}/>
         </nav>        
       
         
-        <div className="headerText nomobile">
-            <h1 className ="lindiName"> Lindi Bracelts</h1>
+        <div className="headerText">
+            <h1 className ="lindiName"> Lindi Braclets</h1>
             <h1 className ="headerBold">Love</h1>
             <h1 className ="headerReg">what you wear. be</h1>
             <h1 className ="headerBold">Unique</h1>
         </div>
         
         <div className="shop">
-          <ul>
+          <ul ref={this.Shop}>
            {entireCatalog}
           </ul> 
         </div>
@@ -132,9 +152,9 @@ class App extends PureComponent {
           </ul>
         </div>
 
-        <div ref={this.AboutMe} className="aboutMe">
-          <h1>About Me</h1>
-          <img src={author} alt="Author Photo"/>
+        <div  className="aboutMe">
+          <h1 ref={this.AboutMe}> About Me</h1>
+          <img src={author} alt="Author"/>
           <p>I started croqueing a long time ago. It is my passion
             it is the best thing in the world. Filler text to put here
             Filler text to put here Filler text to put here Filler text to put here 
@@ -146,7 +166,7 @@ class App extends PureComponent {
           </p>
         </div>
 
-        <div  className="contactMe">
+        <div className="contactMe">
           <h1 ref={this.ContactMe}>Contact Me</h1>
           <form className="contactMeForm">
             <input type="text" placeholder="Subject"></input>
@@ -156,13 +176,16 @@ class App extends PureComponent {
           </form>
         </div>
 
+
         <div className="socialMedia">
+          <p>All rights reserved</p>
           <ul>
             <li><a href={"https://www.instagram.com/lindibracelets/"} target="_blank" rel="noreferrer"><img className="socialMediaIcon"src={instagram} alt="FacebookLogo"/></a></li>
             <li><a href={"https://www.facebook.com/LinDiBracelets/"} target="_blank" rel="noreferrer"><img className="socialMediaIcon"src={facebook} alt="InstagramLogo"/></a></li>
             <li><a href={"https://www.etsy.com/shop/LinDiBracelets?ref=simple-shop-header-name&listing_id=584303931"} target="_blank" rel="noreferrer"><img className="socialMediaIcon"src={etsy} alt="EtsyLogo"/></a></li>
           </ul>
         </div>
+
 
       </div>
     );
