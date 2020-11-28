@@ -1,0 +1,36 @@
+@font-face {
+  font-family: "Ostrich Bold";
+  src: url("resources/fonts/ostrich-sans-master/webfonts/ostrich-sans-bold.eot");
+  src:
+  url("resources/fonts/ostrich-sans-master/webfonts/ostrich-sans-bold.woff") format("woff"),
+  url("resources/fonts/ostrich-sans-master/OstrichSans-Bold.otf") format("opentype"),
+  url("resources/fonts/ostrich-sans-master/webfonts/ostrich-sans-bold.svg#filename") format("svg");
+      
+  }
+  
+  @font-face {
+    font-family: 'Ostrich Regular';
+    src: url('resources/fonts/ostrich-sans-master/webfonts/ostrich-sans-regular.eot');
+    src: local('☺'), url('resources/fonts/ostrich-sans-master/webfonts/ostrich-sans-regular.woff') format('woff'), url('resources/fonts/ostrich-sans-master/webfonts/ostrich-sans-regular.ttf') format('truetype'), url('resources/fonts/ostrich-sans-master/webfonts/ostrich-sans-regular.svg') format('svg');
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family: 'Ostrich Regular',monospace;
+      font-size:20px;
+      color:black;
+      text-decoration: none;
+      
+      
+  }
+  
+  body{
+      /*background-image:url("resources/images/background.JPG");
+      background-size: cover;
+      background-position:center;*/
+      font-family: 'Ostrich Bold',monospace;
+  }

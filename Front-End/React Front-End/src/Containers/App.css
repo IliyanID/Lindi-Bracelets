@@ -1,0 +1,20 @@
+/*
+Colors:
+  button Default: :#EBD128
+  Button selected: #D1B13D
+
+  custon fonts: Ostrich Regular,Ostrich Bold
+
+*/
+
+.navBar{
+  text-align:right;
+  margin: 10px;
+  position:sticky;
+  
+}
+
+.navList li{
+  display: inline;
+  padding:20px;
+}
