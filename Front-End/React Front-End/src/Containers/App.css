@@ -17,11 +17,16 @@ Colors:
   overflow-x:hidden;
   margin:0px;
   list-style-type:none;
+  scroll-behavior: smooth;
 }
+
+
 
 ::-webkit-scrollbar {
 width:0;
 }
+
+
 
 .navBar{
   position:fixed;
@@ -31,33 +36,54 @@ width:0;
 
   left:50%;
   transform: translate(-50%,0);
-  background-color:#FFF;
+  background-color:#333333;
+
+  float:left;
+
+  
 }
   .navList li{
-    display: inline-block;
+    list-style: none;
     margin:10px;
     padding:10px 10px 5px 10px;
     border-bottom:2px solid #EBD128;
+    cursor:pointer;
+
+    font-size:180%;
+
+    cursor:pointer;
+
+    color:#FFF;
+
+    float:right;
     border-radius:10px 10px 0px 0px;
-    transition: background-color .5s;
+    
   }
     .navList li:hover{
       background-color:#EBD128;
-    
-    }
-    .navList li a{
-      font-size:180%;
-    }
-    .navSocialMediaIcon{
-      width:30px;
+      color:#FFF;
+      font-weight: 600;
+      border-radius:10px;
     }
 
-.lindi{
-  position:absolute;
+    .navSocialMediaIcon{
+
+      width:30px;
+      cursor:pointer;
+    }
+
+
+
+.lindiName{
+  position:inherit;
   top:70px;
   font-size:200%;
   color:#FFF;
+
+  cursor:pointer;
 }
+
+
 
 .headerText{
   padding-top:150px;
@@ -76,6 +102,8 @@ width:0;
       font-size:300%;
     }
 
+
+
 .shop ul{
   margin-left:0vw;
   margin-right:0px; 
@@ -92,28 +120,35 @@ width:0;
     background-size:cover;
     background-position:center;
     
+    cursor:pointer;
   }
 
+
+
 .eventsTitle{
-  background-image:url("../resources/images/background.JPG");
-  background-size:cover;
-  background-position:bottom;
+  padding-bottom:40px;
 }
-.eventsTitle h1{
-  padding:50px 0px 0px 50px;
-  font-size:500%;
- 
- color:#EBD128;
-}
+  .eventsTitle h1{
+    padding:50px 0px 0px 50px;
+    font-size:500%;
+  
+  color:#EBD128;
+  }
   .event{
     border: 2px solid #FFF;
     display:inline-block;
     margin: 5px;
     padding:7px;
+
+    
     background:#FFF;
     border:2px solid #000;
     border-radius:20px;
     text-align: center;
+
+    margin-left:50px;
+
+
   }
     .event p{
       font-size:150%;
@@ -123,14 +158,55 @@ width:0;
       border:1px solid #000;
       height:300px;
       border-radius:20px;
+      cursor:pointer;
     }
-    .event p a{
-      font-size:120%;
-      border-bottom:2px solid #FFF;
-    }
+      .event p a{
+        font-size:120%;
+        border-bottom:2px solid #FFF;
+        cursor:pointer;
+      }
 
+
+
+.aboutMe{
+  background-color:#FFF;
+  padding-bottom:20px;
+
+  background-size:cover;
+  background-position:bottom;
+  background-image:url("../resources/images/background.JPG");
+  
+  min-height:100vh;
+}
+  .aboutMe h1{
+    padding:50px 0px 0px 50px;
+    font-size:500%;
+  
+  color:#EBD128;
+  }
+  .aboutMe img{
+    border-radius:20px;
+    width:30%;
+  }
+  .aboutMe p{
+    display:inline-block;
+    width:70%;
+    vertical-align: top;
+    font-size:150%;
+
+    background-color: #FFF;
+    border-radius:20px;
+    padding:15px;
+  }
+
+
+
+
+.contactMe{
+padding-bottom:10px;
+}
 .contactMe h1{
-  margin:50px 0px 0px 50px;
+  padding:50px 0px 0px 50px;
   font-size:500%;
   color:#EBD128;
 }
@@ -154,18 +230,18 @@ width:0;
     display:block;
 
     font-family:monospace;
+    cursor:text;
     
 
     transition:background-color .5s border-color .5s;
   }
-  .contactMeForm input:focus, .contactMeForm textArea:focus,.contactMeForm input:hover, .contactMeForm textArea:hover{
-    border-color:#EBD128;
-  }
-
-    .formContent{
-      min-height:400px;
+    .contactMeForm input:focus, .contactMeForm textArea:focus,.contactMeForm input:hover, .contactMeForm textArea:hover{
+      border-color:#EBD128;
     }
 
+      .formContent{
+        min-height:400px;
+      }
   .button:hover{
     background-color:#EBD128;
     border-color:#EBD128;
@@ -173,21 +249,23 @@ width:0;
   }
   .button{
     color:#EBD128;
+    cursor:pointer;
   }
 
-.socialMedia{
-  background-color:#fff;
+
+
+.socialMedia ul{
+ background-color:#333333;
+  border:2px solid #333333;
 }
+  .socialMedia ul li{
+    margin:10px;
+    list-style:none;
+    float:right;
+  }
+    .socialMediaIcon{
+      width:60px;
+      cursor:pointer;
 
-.socialMedia li{
-  display:inline-block;
-  float:right;
-  margin:10px
-}
-
-.socialMediaIcon{
-  width:60px;
-
-  
-}
-
+      
+    }

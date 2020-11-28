@@ -24,6 +24,7 @@
       font-size:20px;
       color:black;
       text-decoration: none;
+      cursor:default;
       
       
       
@@ -34,7 +35,7 @@
       background-size: cover;
       background-position:center;*/
       font-family: 'Ostrich Bold',monospace;
-      background-color:#808080
+      background-color:#1abc9c;
   }
 
   html, body {
