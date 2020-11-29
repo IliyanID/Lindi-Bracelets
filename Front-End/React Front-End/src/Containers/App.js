@@ -83,7 +83,13 @@ class App extends PureComponent {
     ];
 
     let entireCatalog = catalogItem.map((item) =>{
-      return (<li key = {item.id} style={{backgroundImage: `url(${catalog})`}}></li>);
+      return (
+      <li key = {item.id} style={{backgroundImage: `url(${catalog})`}}>
+        <div className="eventLinks">
+          <p><a>Go To Store</a></p>
+          <p><a>Product Details</a></p>
+        </div>
+      </li>);
     })
 
 
@@ -104,13 +110,15 @@ class App extends PureComponent {
       return(
       <li className="event"key={event.id}>
         <a href={event.link} target="_blank" rel="noreferrer"><img src={stand} alt="eventLocation"/></a>
-        <p>
-          Where: <a href={event.link} target="_blank" rel="noreferrer">{event.location}</a>
-        </p>
-        
-        <p>
-          When: {event.date}
-        </p>
+        <div className="eventDescription">
+          <p>
+            Where: <a href={event.link} target="_blank" rel="noreferrer">{event.location}</a>
+          </p>
+          
+          <p>
+            When: {event.date}
+          </p>
+          </div>
       </li>);
     })
 
@@ -133,7 +141,6 @@ class App extends PureComponent {
       
         
         <div className="headerText">
-            <h1 className ="lindiName"> Lindi Braclets</h1>
             <h1 className ="headerBold">Love</h1>
             <h1 className ="headerReg">what you wear. be</h1>
             <h1 className ="headerBold">Unique</h1>
@@ -169,8 +176,8 @@ class App extends PureComponent {
         <div className="contactMe">
           <h1 ref={this.ContactMe}>Contact Me</h1>
           <form className="contactMeForm">
-            <input type="text" placeholder="Subject"></input>
             <input type="text" placeholder="Email"></input>
+            <input type="text" placeholder="Subject"></input>
             <textarea  className="formContent"></textarea >
             <button className="button" type="submit">Submit</button>
           </form>

@@ -103,7 +103,7 @@ scroll-behavior: smooth;
 
 
 .headerText{
-  background-image:linear-gradient(rgba(26, 188, 156, 0.1),rgba(26, 188, 156, 0.1)) , url("../resources/images/HeaderBackgroundedited.png");
+  background-image:linear-gradient(rgba(26, 188, 156, 0.3),rgba(26, 188, 156, 0.3)) , url("../resources/images/HeaderBackgroundedited.png");
  /*background-image:url("../resources/images/HeaderBackgroundedited.png");*/
   background-repeat:no-repeat;
   background-size:cover;
@@ -145,6 +145,15 @@ scroll-behavior: smooth;
     
     cursor:pointer;
   }
+  .eventLinks a{
+    color:#FFF;
+    border: 2px solid #FFF;
+    margin:20px;
+    display:inline-block;
+    padding:10px;
+
+    font-size:40%;
+  }
 
 
 
@@ -178,10 +187,14 @@ scroll-behavior: smooth;
 
     }
     .event img{
-      border:1px solid #000;
+      border:2px solid #000;
       height:300px;
-      border-radius:20px;
+      border-radius:10px;
       cursor:pointer;
+    }
+    .eventDescription{
+      border: 2px solid #000;
+      border-radius:10px;
     }
       .event p a{
         font-size:120%;
@@ -196,8 +209,8 @@ scroll-behavior: smooth;
   padding-bottom:20px;
 
   background-size:cover;
-  background-position:bottom;
-  background-image:url("../resources/images/background.JPG");
+  background-position:center;
+  background-image:url("../resources/images/flower.jpg");
   
   min-height:100vh;
 }
