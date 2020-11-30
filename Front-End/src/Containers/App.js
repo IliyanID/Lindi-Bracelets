@@ -121,7 +121,7 @@ class App extends PureComponent {
     let entireGallery = galleryItem.map((item)=>{
       return(
       <li key={item.id}>
-        <img src={stand} alg="stand"/>
+        <img src={stand} alt="stand"/>
       </li>);
     })
       
