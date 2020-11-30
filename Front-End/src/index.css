@@ -35,7 +35,10 @@
       background-size: cover;
       background-position:center;*/
       font-family: 'Ostrich Bold',monospace;
-      background-color:#1abc9c;
+      background-image:linear-gradient(rgba(255, 255, 255, .2),rgba(255, 255, 255, .2)) , url("resources/images/background-edited.jpg");
+      background-position: center;
+      background-size:cover;
+
   }
 
   html, body {

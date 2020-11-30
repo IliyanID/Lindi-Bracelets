@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import './App.css';
-//import { Link } from 'react-scroll';
+
 import logo from '../resources/images/cilcular-logo-white.png'
 
 import catalog from '../resources/images/bracelts.jpg';
@@ -12,41 +12,43 @@ import etsy from '../resources/images/social-media/etsy.png';
 import facebook from '../resources/images/social-media/facebook.png';
 import instagram from '../resources/images/social-media/instagram.png';
 
-//smoothscroll.polyfill();
-
 class App extends PureComponent {
   constructor(props)
   {
     super(props)
     this.Shop = React.createRef();
+    this.Gallery = React.createRef();
     this.Events = React.createRef();
     this.AboutMe = React.createRef(); 
     this.ContactMe = React.createRef(); 
   }
   
   state = {
-    navBarSelected:["","","",""]
+    navBarSelected:["","","","",""]
   }
 
 
 
   scrollTo(ref){
     ref.current.scrollIntoView(true);
-    document.getElementById("main-container").scrollBy(0,-20);
+    document.getElementById("main-container").scrollBy(0,-80);
   }
 
   checkSelected = () =>{
     if(this.inViewPort(this.Shop)){
-      this.setState({navBarSelected:["navListSelected","","",""]})
+      this.setState({navBarSelected:["navListSelected","","","",""]})
+    }
+    else if(this.inViewPort(this.Gallery)){
+      this.setState({navBarSelected:["","navListSelected","","",""]})
     }
    else if(this.inViewPort(this.Events)){
-     this.setState({navBarSelected:["","navListSelected","",""]})
+     this.setState({navBarSelected:["","","navListSelected","",""]})
    }
    else if(this.inViewPort(this.AboutMe)){
-     this.setState({navBarSelected:["","","navListSelected",""]})
+     this.setState({navBarSelected:["","","","navListSelected",""]})
    }
    else if(this.inViewPort(this.ContactMe)){
-     this.setState({navBarSelected:["","","","navListSelected"]})
+     this.setState({navBarSelected:["","","","","navListSelected"]})
    }
    else{
     this.setState({navBarSelected:["","","",""]})
@@ -72,6 +74,28 @@ class App extends PureComponent {
 
   render () {
     let catalogItem =[
+      {id:0, link:"https://www.etsy.com/listing/714558154/crochet-pattern-pdf-crochet-beaded?ref=shop_home_active_12", descrption:""},
+      {id:1, link:"https://www.etsy.com/listing/714558154/crochet-pattern-pdf-crochet-beaded?ref=shop_home_active_12", descrption:""},
+      {id:2, link:"https://www.etsy.com/listing/714558154/crochet-pattern-pdf-crochet-beaded?ref=shop_home_active_12", descrption:""},
+      {id:3, link:"https://www.etsy.com/listing/714558154/crochet-pattern-pdf-crochet-beaded?ref=shop_home_active_12", descrption:""},
+      {id:4, link:"https://www.etsy.com/listing/714558154/crochet-pattern-pdf-crochet-beaded?ref=shop_home_active_12", descrption:""},
+      {id:5, link:"https://www.etsy.com/listing/714558154/crochet-pattern-pdf-crochet-beaded?ref=shop_home_active_12", descrption:""},
+      {id:6, link:"https://www.etsy.com/listing/714558154/crochet-pattern-pdf-crochet-beaded?ref=shop_home_active_12", descrption:""},
+      {id:7, link:"https://www.etsy.com/listing/714558154/crochet-pattern-pdf-crochet-beaded?ref=shop_home_active_12", descrption:""}
+    ];
+    let entireCatalog = catalogItem.map((item) =>{
+      return (
+      <li key = {item.id} style={{backgroundImage: `url(${catalog})`}}>
+        <div className="shopButton">
+          <div className="shopButtonPackage">
+            <p><a href={"https://www.etsy.com/shop/LinDiBracelets?ref=simple-shop-header-name&listing_id=584303931"} target="_blank" rel="noreferrer">Go To Store</a></p>
+            <p><a href={item.link} target="_blank" rel="noreferrer">Product Details</a></p>
+          </div>
+        </div>
+      </li>);
+    })
+
+    let galleryItem =[
       {id:0, link:"", descrption:""},
       {id:1, link:"", descrption:""},
       {id:2, link:"", descrption:""},
@@ -79,18 +103,29 @@ class App extends PureComponent {
       {id:4, link:"", descrption:""},
       {id:5, link:"", descrption:""},
       {id:6, link:"", descrption:""},
-      {id:7, link:"", descrption:""}
+      {id:7, link:"", descrption:""},
+      {id:8, link:"", descrption:""},
+      {id:9, link:"", descrption:""},
+      {id:10, link:"", descrption:""},
+      {id:11, link:"", descrption:""},
+      {id:12, link:"", descrption:""},
+      {id:13, link:"", descrption:""},
+      {id:14, link:"", descrption:""},
+      {id:15, link:"", descrption:""},
+      {id:16, link:"", descrption:""},
+      {id:17, link:"", descrption:""},
+      {id:18, link:"", descrption:""},
+      {id:19, link:"", descrption:""},
+      {id:20, link:"", descrption:""},
     ];
-
-    let entireCatalog = catalogItem.map((item) =>{
-      return (
-      <li key = {item.id} style={{backgroundImage: `url(${catalog})`}}>
-        <div className="eventLinks">
-          <p><a>Go To Store</a></p>
-          <p><a>Product Details</a></p>
-        </div>
+    let entireGallery = galleryItem.map((item)=>{
+      return(
+      <li key={item.id}>
+        <img src={stand} alg="stand"/>
       </li>);
     })
+      
+
 
 
     let events =[
@@ -131,9 +166,10 @@ class App extends PureComponent {
                 <li><a href={"https://www.facebook.com/LinDiBracelets/"} target="_blank" rel="noreferrer"><img className="navSocialMediaIcon"src={facebook} alt="FacebookLogo"/></a></li>
                 <li><a href={"https://www.etsy.com/shop/LinDiBracelets?ref=simple-shop-header-name&listing_id=584303931"} target="_blank" rel="noreferrer"><img className="navSocialMediaIcon"src={etsy} alt="EtsyLogo"/></a></li>
                 
-                <li className={this.state.navBarSelected[3]} onClick={()=>{this.scrollTo(this.ContactMe)}}>Contact Me</li>
-                <li className={this.state.navBarSelected[2]} onClick={()=>{this.scrollTo(this.AboutMe)}}>About Me</li>
-                <li className={this.state.navBarSelected[1]} onClick={()=>{this.scrollTo(this.Events)}}>Events</li>
+                <li className={this.state.navBarSelected[4]} onClick={()=>{this.scrollTo(this.ContactMe)}}>Contact Me</li>
+                <li className={this.state.navBarSelected[3]} onClick={()=>{this.scrollTo(this.AboutMe)}}>About Me</li>
+                <li className={this.state.navBarSelected[2]} onClick={()=>{this.scrollTo(this.Events)}}>Events</li>
+                <li className={this.state.navBarSelected[1]} onClick={()=>{this.scrollTo(this.Gallery)}}>Gallery</li>
                 <li className={this.state.navBarSelected[0]} onClick={()=>{this.scrollTo(this.Shop)}}>Shop</li>
             </ul>
             <img className="logo"src={logo} alt="logo" onClick={()=>{document.getElementById("main-container").scrollTo(0,0);}}/>
@@ -141,15 +177,24 @@ class App extends PureComponent {
       
         
         <div className="headerText">
-            <h1 className ="headerBold">Love</h1>
-            <h1 className ="headerReg">what you wear. be</h1>
-            <h1 className ="headerBold">Unique</h1>
+            <h2 className="lindiName">Lindi Braclets</h2>
+            <h2 className ="headerBold">Love</h2>
+            <h2 className ="headerReg">what you wear. be</h2>
+            <h2 className ="headerBold">Unique</h2>
         </div>
         
         <div className="shop">
-          <ul ref={this.Shop}>
+          <h1 ref={this.Shop}>Shop</h1>
+          <ul>
            {entireCatalog}
           </ul> 
+        </div>
+
+        <div className="gallery">
+          <h1 ref={this.Gallery}>Gallery</h1>
+          <ul>
+            {entireGallery}
+          </ul>
         </div>
 
         <div className="eventsTitle">
@@ -175,6 +220,7 @@ class App extends PureComponent {
 
         <div className="contactMe">
           <h1 ref={this.ContactMe}>Contact Me</h1>
+          <p>Got something different in mind? Send me an email and we can make it a realty</p>
           <form className="contactMeForm">
             <input type="text" placeholder="Email"></input>
             <input type="text" placeholder="Subject"></input>

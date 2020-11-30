@@ -17,8 +17,6 @@ Colors:
   overflow-x:hidden;
   margin:0px;
   list-style-type:none;
-
-
 }
 
 
@@ -28,10 +26,37 @@ width:0;
 scroll-behavior: smooth;
 }
 
+h1{
+  text-align: center;
+  padding:5px;
+  font-size:400%;
+
+  color:#FFF;
+  min-width:300px;
+  max-width:640px;
+  width:30%;
+  
+  margin:40px 0px 20px 50px;
+  background: #f00;
+  border-radius:40px;
+  letter-spacing:5px;
+}
+
+@media (max-width:500px) {
+    .navBar{
+      display:none;
+    }
+    h1{
+      margin:0px;
+    }
+  }
+
 
 
 .navBar{
   position:fixed;
+  z-index:1;
+
   text-align: center;
   margin: 0px;
   width:100%;
@@ -54,7 +79,7 @@ scroll-behavior: smooth;
     padding:10px 10px 5px 10px;
 
     border:solid 2px #333333;
-    border-bottom-color:#EBD128;
+    border-bottom-color:#f00;
     cursor:pointer;
 
     font-size:180%;
@@ -69,15 +94,15 @@ scroll-behavior: smooth;
   }
     .navList li:hover{
      /* background-color:#EBD128;*/
-      border-color:#EBD128;
+      border-color:#f00;
       border-radius:10px;
       color:#FFF;
       font-weight: 600;
       border-radius:10px;
     }
     .navListSelected:hover, .navListSelected:not(:hover){
-      background-color:#EBD128;
-      border-color:#EBD128;
+      background-color:#f00;
+      border-color:#f00;
       color:#FFF;
       font-weight: 600;
       border-radius:10px;
@@ -93,9 +118,12 @@ scroll-behavior: smooth;
 
 .lindiName{
   position:inherit;
-  top:70px;
-  font-size:200%;
+  margin-top:-90px;
+  margin-bottom:50px;
+  font-size:250%;
   color:#FFF;
+  text-align: left;
+  letter-spacing: 5px;
 
   
 }
@@ -103,7 +131,7 @@ scroll-behavior: smooth;
 
 
 .headerText{
-  background-image:linear-gradient(rgba(26, 188, 156, 0.3),rgba(26, 188, 156, 0.3)) , url("../resources/images/HeaderBackgroundedited.png");
+  background-image:linear-gradient(rgba(26, 188, 156, 0),rgba(26, 188, 156, 0)) , url("../resources/images/HeaderBackground.jpg");
  /*background-image:url("../resources/images/HeaderBackgroundedited.png");*/
   background-repeat:no-repeat;
   background-size:cover;
@@ -113,13 +141,13 @@ scroll-behavior: smooth;
   padding:170px 20px 20px 20px;
   height: 100vh;
 }
-  .headerText h1{
+  .headerText h2{
     padding:20px;
   }
     .headerBold{
       font-family:Ostrich Bold;
-      font-size:900%;
-      color:#EBD128;
+      font-size:1000%;
+      color:#f00;
     }
     .headerReg{
       font-size:300%;
@@ -129,43 +157,88 @@ scroll-behavior: smooth;
 
 .shop ul{
   margin-left:0vw;
-  margin-right:0px; 
- 
-  background-image:linear-gradient(rgba(0 0 0 .8),rgba(0 0 0 .8));
+  margin-right:0px;  
+  padding-left:30px;
+  
+
 }
   .shop ul li{
     display:inline-block;
     border: 2px solid #000;
-    width:25vw;
-    height:25vw;
-    margin-bottom:-4px;
+    border-radius:20px;
+
+    width:300px;
+    height:300px;
+    margin:0px 20px 20px 20px;
+    
     
     background-size:cover;
     background-position:center;
     
-    cursor:pointer;
+
   }
-  .eventLinks a{
-    color:#FFF;
-    border: 2px solid #FFF;
+  .shopButton:hover{
+    opacity:100%;
+  }
+  .shopButton{
+    position:relative;
+    background:linear-gradient(rgba(0,0,0,.6),rgba(0, 0, 0, 0.6));
+    height:100%;
+    opacity:0%;
+    transition: opacity .5s;
+  }
+  .shopButtonPackage{
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    
+  }
+  .shopButton p{
+    border: 2px solid #F00;
     margin:20px;
     display:inline-block;
     padding:10px;
 
-    font-size:40%;
+    background-color:#F00;
+    border-radius:10px;
+    cursor:pointer;
   }
+    .shopButton p:hover{
+      font-weight:bold;
+    }
+  .shopButton a{
+    font-size:200%;
+    color:#FFF;
+    cursor:pointer;
+  }
+
+.gallery ul{
+  margin:0px 50px 0px 50px;
+  padding:10px 20px 20px 20px;
+}
+  .gallery li{
+      display:inline-block;
+      margin: 10px 10px 0px 0px;
+
+      border:2px solid #000;
+      padding:10px;
+      background-color:#FFF;
+      border-radius:20px;
+    }
+      .gallery img{
+        width:200px;
+        border:2px solid #000;
+        border-radius:20px;
+      }
 
 
 
 .eventsTitle{
   padding-bottom:40px;
-}
-  .eventsTitle h1{
-    padding:50px 0px 0px 50px;
-    font-size:500%;
   
-  color:#EBD128;
-  }
+}
   .event{
     border: 2px solid #FFF;
     display:inline-block;
@@ -184,7 +257,6 @@ scroll-behavior: smooth;
   }
     .event p{
       font-size:150%;
-
     }
     .event img{
       border:2px solid #000;
@@ -205,21 +277,12 @@ scroll-behavior: smooth;
 
 
 .aboutMe{
-  background-color:#FFF;
   padding-bottom:20px;
-
   background-size:cover;
   background-position:center;
-  background-image:url("../resources/images/flower.jpg");
   
-  min-height:100vh;
+
 }
-  .aboutMe h1{
-    padding:50px 0px 0px 50px;
-    font-size:500%;
-  
-  color:#EBD128;
-  }
   .aboutMe img{
     border-radius:20px;
     width:30%;
@@ -239,14 +302,14 @@ scroll-behavior: smooth;
 
 
 .contactMe{
-padding-top: 80px;
+padding-top: 20px;
 padding-bottom:10px;
 height:100vh;
 }
-.contactMe h1{
-  padding:30px 0px 30px 50px;
-  font-size:500%;
-  color:#EBD128;
+.contactMe p{
+  font-size:200%;
+  margin:0 20px 20px 50px;
+  color:#FFF;
 }
   .contactMeForm input, .contactMeForm textArea, .button{
     position:relative;
@@ -274,20 +337,21 @@ height:100vh;
     transition:background-color .5s ,border .5s, color .5s;
   }
     .contactMeForm input:focus, .contactMeForm textArea:focus,.contactMeForm input:hover, .contactMeForm textArea:hover{
-      border-color:#EBD128;
+      border-color:#333333;
     }
 
       .formContent{
         min-height:400px;
       }
   .button:hover{
-    background-color:#EBD128;
-    border-color:#EBD128;
+    background-color:#333333;
+    border-color:#333333;
     color:#FFF;
   }
   .button{
-    color:#EBD128;
+    color:#333333;
     cursor:pointer;
+    background-color:#FFF;
   }
 
 
