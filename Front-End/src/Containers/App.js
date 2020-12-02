@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import axios from "axios";
 import './App.css';
 
 import logo from '../resources/images/cilcular-logo-white.png'
@@ -21,13 +22,24 @@ class App extends PureComponent {
     this.Events = React.createRef();
     this.AboutMe = React.createRef(); 
     this.ContactMe = React.createRef(); 
+    this.getGiHubUserWithAxios();
   }
   
   state = {
-    navBarSelected:["","","","",""]
+    navBarSelected:["","","","",""],
+    gallery:[{id:"",link:"",description:""}]
   }
 
+  getGiHubUserWithAxios = async () => {
+    let url = window.location.href+"/EtsyImages";
+    let test = "http://10.0.0.108:8080/EtsyImages"
+    const response = await fetch(test);
+    const jsonData = await response.json();
 
+    
+    this.setState({gallery:jsonData});
+    console.log(jsonData)
+  };
 
   scrollTo(ref){
     ref.current.scrollIntoView(true);
@@ -72,7 +84,12 @@ class App extends PureComponent {
     }
   }
 
+  
+
+
   render () {
+    
+
     let catalogItem =[
       {id:0, link:"https://www.etsy.com/listing/714558154/crochet-pattern-pdf-crochet-beaded?ref=shop_home_active_12", descrption:""},
       {id:1, link:"https://www.etsy.com/listing/714558154/crochet-pattern-pdf-crochet-beaded?ref=shop_home_active_12", descrption:""},
@@ -118,10 +135,10 @@ class App extends PureComponent {
       {id:19, link:"", descrption:""},
       {id:20, link:"", descrption:""},
     ];
-    let entireGallery = galleryItem.map((item)=>{
+    let entireGallery = this.state.gallery.map((item)=>{
       return(
       <li key={item.id}>
-        <img src={stand} alt="stand"/>
+        <img src={item.link} alt="stand"/>
       </li>);
     })
       
@@ -177,7 +194,7 @@ class App extends PureComponent {
       
         
         <div className="headerText">
-            <h2 className="lindiName">Lindi Braclets</h2>
+            <h2 className="lindiName">Lindi Bracelets</h2>
             <h2 className ="headerBold">Love</h2>
             <h2 className ="headerReg">what you wear. be</h2>
             <h2 className ="headerBold">Unique</h2>
