@@ -1,10 +1,10 @@
 import React, { PureComponent } from 'react';
-import axios from "axios";
+
 import './App.css';
 
 import logo from '../resources/images/cilcular-logo-white.png'
 
-import catalog from '../resources/images/bracelts.jpg';
+//import catalog from '../resources/images/bracelts.jpg';
 import stand from '../resources/images/stand.jpg'
 
 import author from '../resources/images/profile_picture.png';
@@ -22,18 +22,31 @@ class App extends PureComponent {
     this.Events = React.createRef();
     this.AboutMe = React.createRef(); 
     this.ContactMe = React.createRef(); 
-    this.getGiHubUserWithAxios();
+    this.getEtsyImages();
+    this.getInstagramImages();
   }
   
   state = {
     navBarSelected:["","","","",""],
+    shop:[{id:"",link:"",description:""}],
     gallery:[{id:"",link:"",description:""}]
   }
 
-  getGiHubUserWithAxios = async () => {
+  getEtsyImages = async () => {
     let url = window.location.href+"/EtsyImages";
-    let test = "http://10.0.0.108:8080/EtsyImages"
-    const response = await fetch(test);
+    let test = "http://10.0.0.108:80/EtsyImages"
+    const response = await fetch(url);
+    const jsonData = await response.json();
+
+    
+    this.setState({shop:jsonData});
+    console.log(jsonData)
+  };
+
+  getInstagramImages = async () => {
+    let url = window.location.href+"/InstagramImages";
+    let test = "http://10.0.0.108:80/InstagramImages"
+    const response = await fetch(url);
     const jsonData = await response.json();
 
     
@@ -100,9 +113,9 @@ class App extends PureComponent {
       {id:6, link:"https://www.etsy.com/listing/714558154/crochet-pattern-pdf-crochet-beaded?ref=shop_home_active_12", descrption:""},
       {id:7, link:"https://www.etsy.com/listing/714558154/crochet-pattern-pdf-crochet-beaded?ref=shop_home_active_12", descrption:""}
     ];
-    let entireCatalog = catalogItem.map((item) =>{
+    let entireCatalog = this.state.shop.map((item) =>{
       return (
-      <li key = {item.id} style={{backgroundImage: `url(${catalog})`}}>
+      <li key = {item.id} style={{backgroundImage: `url(${item.link})`}}>
         <div className="shopButton">
           <div className="shopButtonPackage">
             <p><a href={"https://www.etsy.com/shop/LinDiBracelets?ref=simple-shop-header-name&listing_id=584303931"} target="_blank" rel="noreferrer">Go To Store</a></p>

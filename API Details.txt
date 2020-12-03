@@ -1,0 +1,56 @@
+(Etsy)
+app name: Personal Website
+keystring: n4vavv9beuogz0iewzt0to7v
+shared secret: itm1g844cl
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+(Iliyanid2000 instagram)
+Get Access Token: https://api.instagram.com/oauth/authorize?client_id=822999288270199&redirect_uri=https://localhost:3000/&scope=user_profile,user_media&response_type=code
+
+
+(Update variables)Get LongLived Access Token(60Days) curl -i -X GET "https://graph.instagram.com/access_token?grant_type=ig_exchange_token&client_secret=0728b92943bb20b1610862b6dcea3e01&access_token=IGQVJWT09mejNsRF9ZAQUgxeUZAWbEpRQzhsNFh5ZA1B0SWhzcDlZAQk5sSDZA1WDJVZAjlBWFR1amVhMV9jV2JMXzFGZAF9RMlZAST0hpRW04Ynk0MkhOVkZAsYmVodndKRzVFWXJVVzMwc2U0MUhpTGJPNEpGd09iSmx0dS1JekUw"
+
+(Update variables) Refresh LongLived Access Token(60 days) curl -i -X GET "https://graph.instagram.com/refresh_access_token
+  ?grant_type=ig_refresh_token
+  &access_token=IGQVJVbTZAUZA0VBcmdzcmZAJRDJKOHJiblJCRVVPYmZADYkRySk1Uakh2aTNlSlRURkt4RTd6QUVKanRxN21GUmVoTm5VZA21pNXlpN25qMHZAMV3FBcmNaMjdiNGMtSkVPX3poUWszYVVB"
+
+
+Instagram long lived access token:
+IGQVJWREV6UEVIazlGNlAxY3FRUm1OQUhDTWdRQmlHTGEtNGlSS1JWdFprdWxLODdXUFltcE1CR0xodW9EdUdVcnFZAWlhzV2lsZAUNnMURSaUI0djRSUHNISHJUME5rN0ptckt4SElR
+
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+(lindibracelets instagram)
+
+
+-------------------------------------------------------------------------------
+Get User Code: https://api.instagram.com/oauth/authorize?client_id=822999288270199&redirect_uri=https://localhost:3000/&scope=user_profile,user_media&response_type=code
+code: AQDbc1xOO5EY2qwLDAsdBwBTMdse29nfBeW1T-L8Hkqb7oOzYD5iVL-qwDpzKV9pK8gJyrWMfl73u7mr0EoDVmKNMyvwte5nHfN5NUuOF9JNGzuw_4HaVlI4KrWxhKrUAxvkAEW8oPyVIuw2Jgdo8ljw9ZpN4ZKp2_BXpFIhuA-LNjAq4e4INsqGNRgH5vSqU1eP5eQYoXv_mPftKc0a4TLhduQXBzbRz-w9oUHOAbH5Tg
+-------------------------------------------------------------------------------
+
+
+-------------------------------------------------------------------------------
+(Exchange Code for Token)
+curl -X POST \ https://api.instagram.com/oauth/access_token \ -F client_id=822999288270199 \ -F client_secret=0728b92943bb20b1610862b6dcea3e01 \ -F grant_type=authorization_code \ -F redirect_uri=https://localhost:3000/ \ -F code=AQDbc1xOO5EY2qwLDAsdBwBTMdse29nfBeW1T-L8Hkqb7oOzYD5iVL-qwDpzKV9pK8gJyrWMfl73u7mr0EoDVmKNMyvwte5nHfN5NUuOF9JNGzuw_4HaVlI4KrWxhKrUAxvkAEW8oPyVIuw2Jgdo8ljw9ZpN4ZKp2_BXpFIhuA-LNjAq4e4INsqGNRgH5vSqU1eP5eQYoXv_mPftKc0a4TLhduQXBzbRz-w9oUHOAbH5Tg
+api_key(1 hour): IGQVJXVUFSLWgzSWoxTWRtcC14VzhfYl9XSFE0YklRTlNYSkhuUktSTHR4MVNqR3diUWZAqRXZAVbjIxX1BmNTdrSVFyY3FWRHZAHRVZApSXF0QlpJZAWw5UERrUkV3LUVxaDJPZAU9BVnBpdkNNZAG5KNXhfcDE0T2JfU0ZAnX3ZAn
+-------------------------------------------------------------------------------
+
+
+-------------------------------------------------------------------------------
+(Exhange short-tem Token to long term Token)
+
+https://graph.instagram.com/access_token
+  ?grant_type=ig_exchange_token
+  &client_secret=0728b92943bb20b1610862b6dcea3e01
+  &access_token=IGQVJXVUFSLWgzSWoxTWRtcC14VzhfYl9XSFE0YklRTlNYSkhuUktSTHR4MVNqR3diUWZAqRXZAVbjIxX1BmNTdrSVFyY3FWRHZAHRVZApSXF0QlpJZAWw5UERrUkV3LUVxaDJPZAU9BVnBpdkNNZAG5KNXhfcDE0T2JfU0ZAnX3ZAn
+
+api_key(60 days): IGQVJXRVNDb3ozbVZA2QVJEQUN2WjI2UHpWVFVrbWVLM0xaNXI4cG1fYUpRWU1hVmk4Y0NNZAEdTelBLSk9SMVNvdmpTM1hUakpVMkN5RkduNVc4ZAXMtb0JQY3BYcUtqemtuSklQOG5n
+-------------------------------------------------------------------------------
+
+
+-------------------------------------------------------------------------------
+(Refresh long temm Token)
+https://graph.instagram.com/refresh_access_token
+  ?grant_type=ig_refresh_token
+  &access_token=IGQVJYU2F0TnFCcmg0YjVDaG9WbVlXMklEX2wwYzY2ZAWR4YjBxTmFCTVpaT3NDNS1lUjF5SEtieFdLSGc1aU94emVsZAWxreFFDYlZATWlNmWlNZAd0xCOEZAxRU1TdHVEMDM3OV9jWkR3
+
+-------------------------------------------------------------------------------

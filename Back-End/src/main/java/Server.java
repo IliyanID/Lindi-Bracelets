@@ -17,6 +17,8 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Iterator;
 import java.util.Scanner;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javax.xml.xpath.XPath;
 
@@ -25,6 +27,8 @@ import javax.xml.xpath.XPath;
 public class Server
 {
     static String[] etsyImages = null;
+    static String[] instagramImages = null;
+
     final static boolean debug = false;
     private final Logger log = LoggerFactory.getLogger(Server.class);
 
@@ -38,10 +42,7 @@ public class Server
 
     private void configureRestfulApiServer() {
 
-
-        getEtsyImages();
-
-        Spark.port(8080);
+        Spark.port(80);
         System.out.println("Server configured to listen on port 80");
 
         //String keyStoreLocation = "deploy/keystore.jks";
@@ -50,7 +51,18 @@ public class Server
 
 
 
+        int delay = 10000; // delay for 10 sec.
+        int period = 3600000; // repeat every hour.
 
+        Timer timer = new Timer();
+
+        timer.scheduleAtFixedRate(new TimerTask() {
+            public void run() {
+                System.out.println("Refreshing Resources");
+                getEtsyImages();
+                getInstagramImages();
+            }
+        }, delay, period);
 
 
 
@@ -99,6 +111,21 @@ public class Server
         }
         return returnStr;
     }
+    private void getInstagramImages(){
+        String api_key = "IGQVJXRVNDb3ozbVZA2QVJEQUN2WjI2UHpWVFVrbWVLM0xaNXI4cG1fYUpRWU1hVmk4Y0NNZAEdTelBLSk9SMVNvdmpTM1hUakpVMkN5RkduNVc4ZAXMtb0JQY3BYcUtqemtuSklQOG5n";
+        String allPostsURL = "https://graph.instagram.com/me/media?fields=media_url&access_token=" + api_key;
+
+        JSONArray allPosts = new JSONArray(new JSONObject(getResponse(allPostsURL)).getJSONArray("data"));
+        instagramImages = new String[allPosts.length()];
+        for(int i =0; i<allPosts.length();i++)
+        {
+            try {
+                instagramImages[i] = allPosts.getJSONObject(i).getString("media_url");
+                System.out.println("Instagram URL: " + instagramImages[i]);
+            }
+            catch(Exception ignored){}
+        }
+    }
     private void getEtsyImages(){
             String shop_id = "16417755";
             String api_key = "n4vavv9beuogz0iewzt0to7v";
@@ -120,7 +147,7 @@ public class Server
             {
                 try {
                     int currentListingID = arrayListingsJSON.getJSONObject(i).getInt("listing_id");
-                    System.out.println("Current Listing ID: " + currentListingID);
+                    System.out.println("Current Etsy Listing ID: " + currentListingID);
                     individualListingsID[i] = currentListingID;
 
                     String listingURL = "https://openapi.etsy.com/v2/listings/" + individualListingsID[i] + "/images?api_key=" + api_key;
@@ -129,7 +156,7 @@ public class Server
 
                     String pictureURL = listingID.getJSONObject(0).getString("url_fullxfull");
                     etsyImages[i] = pictureURL;
-                    System.out.println("Main Picture: " + pictureURL);
+                    System.out.println("Main Etsy Picture: " + pictureURL);
                     responseHTML += "<img src=\"" + pictureURL + "\"style=\"width:100px;\"/>";
                 }
                 catch(Exception ignored){}
@@ -159,9 +186,33 @@ public class Server
 
                 obj.put(gallery);
             }
-            System.out.println("Entered");
+            System.out.println("Entered Etsy Images");
             return obj;
         });
+
+        Spark.get("/InstagramImages",(request,response)->{
+            response.type("application/json");
+            response.header("Access-Control-Allow-Origin","*");
+            response.status(200); //Success
+            // response.setCharacterEncoding("UTF-8");
+
+
+            JSONArray obj = new JSONArray();
+            for(int i = 0; i < instagramImages.length; i++)
+            {
+                JSONObject gallery = new JSONObject();
+                gallery.put("id",i);
+                gallery.put("link",instagramImages[i]);
+                gallery.put("description","");
+
+
+                obj.put(gallery);
+            }
+            System.out.println("Entered Instagram Images");
+            return obj;
+        });
+
+
         //Spark.get("/",this::echoRequest);
     }
 

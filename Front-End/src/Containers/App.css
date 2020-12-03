@@ -621,14 +621,14 @@ height:100vh;
         padding:5px;
         background-color:#FFF;
         border-radius:20px;
-        height:46vw;
-        width:46vw;
+
       }
         .gallery img{
           
           
           border:20px solid #000;
           border-radius:20px;
+          width:46vw;
         }
   
   
