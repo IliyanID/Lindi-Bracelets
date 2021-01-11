@@ -42,8 +42,8 @@ public class Server
 
     private void configureRestfulApiServer() {
 
-        Spark.port(80);
-        System.out.println("Server configured to listen on port 80");
+        Spark.port(8080);
+        System.out.println("Server configured to listen on port 8080");
 
         //String keyStoreLocation = "deploy/keystore.jks";
         //String keyStorePassword = "password";
