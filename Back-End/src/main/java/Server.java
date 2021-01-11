@@ -52,7 +52,7 @@ public class Server
 
 
         int delay = 10000; // delay for 10 sec.
-        int period = 3600000; // repeat every hour.
+        int period = 3600000 * 24; // repeat every 24 hours.
 
         Timer timer = new Timer();
 
