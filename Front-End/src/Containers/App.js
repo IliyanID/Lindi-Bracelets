@@ -8,7 +8,7 @@ import logo from '../resources/images/cilcular-logo-white.png'
 import stand from '../resources/images/stand.jpg'
 import sola from '../resources/images/sola.jpg'
 
-import author from '../resources/images/profile_picture.png';
+import aboutme from '../resources/images/aboutme3.jpg';
 
 import etsy from '../resources/images/social-media/etsy.png';
 import facebook from '../resources/images/social-media/facebook.png';
@@ -96,7 +96,7 @@ class App extends PureComponent {
 
   inViewPort = (ref) =>{
    let el = ref.current;
-   let percentVisible = 40;
+   let percentVisible = 10;
     let
     rect = el.getBoundingClientRect(),
     windowHeight = (window.innerHeight || document.documentElement.clientHeight);
@@ -187,11 +187,9 @@ class App extends PureComponent {
         
         <div ref={this.Shop} className="shop">
           <h1 >Shop</h1>
-          <div className="catalogList">
           <ul>
            {entireCatalog}
           </ul>
-          </div> 
         </div>
 
         <div ref={this.Gallery} className="gallery">
@@ -208,19 +206,37 @@ class App extends PureComponent {
           </ul>
         </div>
 
-        <div ref={this.AboutMe} className="aboutMe">
+        <div ref={this.AboutMe} className="aboutMe eventsTitle">
           <h1> About Me</h1>
-          <img src={'https://i.etsystatic.com/isa/d8132b/1911746164/isa_760xN.1911746164_8nx5.jpg?version=0'} alt="Author"/>
-          <p>I learned how to crochet from my mom and grandma when I was little. The new high quality thin cotton strings in variety of colors in combination with the beads created new possiblity in front of me. I started making the bracelets in 2017.
-          </p>
 
-          <p>
-          I love experimenting and incorporating different patterns with the sparkle of the beads and jam stones.
-
-Some bracelets are inspired by the ancient Bulgarian embroidery patterns, and others are sparkling asymmetrically or challenging the color combinations.
-
-Every bracelet I create is unique.
-          </p>
+          <ul>
+            <li className="event">
+              <img src={'https://i.etsystatic.com/isa/d8132b/1911746164/isa_760xN.1911746164_8nx5.jpg?version=0'} alt="eventLocation"/>
+              <div className="eventDescription">
+                <p>
+                  I learned how to crochet from my mom and grandma when I was little. The new high quality thin cotton strings in variety of colors in combination with the beads created new possiblity in front of me. I started making the bracelets in 2017. 
+                </p>
+               </div>
+            </li>
+            <li className="event">
+              <img src={stand} alt="eventLocation"/>
+              <div className="eventDescription">
+                <p>
+                  I love experimenting and incorporating different patterns with the sparkle of the beads and jam stones.
+                  Some bracelets are inspired by the ancient Bulgarian embroidery patterns, and others are sparkling asymmetrically 
+                </p>
+               </div>
+            </li>
+            <li className="event">
+              <img src={aboutme} alt="eventLocation"/>
+              <div className="eventDescription">
+                <p>
+                  I love traveling and nature. I draw inspiration from every place I visit and I encorperate that into the design of my creations
+                  If you like any of my product but you have a different favorite color let me know I would love to make it custom.
+                </p>
+               </div>
+            </li>
+          </ul>
         </div>
 
         <div ref={this.ContactMe} className="contactMe">

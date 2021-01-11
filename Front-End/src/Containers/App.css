@@ -32,12 +32,20 @@ Colors:
     cursor:pointer;
   }
   .catalogList{
-text-align: center;
-
-
+    text-align: center;
   }
 }
 @media (max-width: 890px){ /*Smaller than 650px*/
+  .shop ul{
+    padding:none!important;
+    margin:none!important;
+  }
+  .shop ul li{
+    width:80%!important;
+    display:block!important;
+    margin:0px,0px,20px,-20px!important;
+    padding:none!important;
+  }
   .removeIcon{
     display:none;
     width:0px;
@@ -46,9 +54,51 @@ text-align: center;
 
 }
 @media (max-width: 700px){ /*Smaller than 650px*/
+  .headerText{
+    font-size:70%!important;
+  }
+  h1{
+    width:100%!important;
+
+    margin:40px 0px 20px 0px!important;
+  }
+  .shop ul{
+    margin:0px!important;
+    padding:0px!important;
+  }
+    .shop ul li{
+      margin:0px 0px 20px 0px!important;
+      padding:0px!important;
+      width:100vw!important;
+    }
+
+
+  .gallery ul{
+    margin:0px!important;
+    padding:0px!important;
+  }
+
+
   .navList li{
    font-size:calc(100vw / 22)!important;
    margin: 3px !important;
+  }
+
+  .contactMe{
+    padding-bottom:100px!important;
+  }
+
+  .eventsTitle ul{
+    padding:0px!important;
+    margin:0px!important;
+  }
+    .eventsTitle ul li{
+   
+      margin:0px 0px 20px 0px!important;
+    }
+
+  .socialMedia{
+    display:none!important;
   }
 }
 #main-container {
@@ -73,6 +123,7 @@ scroll-behavior: smooth;
 h1{
   text-align: center;
   padding:5px;
+  padding-top:15px;
   font-size:400%;
 
   color:#FFF;
@@ -185,7 +236,7 @@ h1{
   margin-left:0vw;
   margin-right:0px;  
   padding-left:30px;
-  
+  text-align: center;
 
 }
   .shop ul li{
@@ -212,6 +263,7 @@ h1{
     height:100%;
     opacity:0;
     transition: opacity .5s;
+    border-radius:17px;
   }
   .shopButtonPackage{
     position: relative;
@@ -271,6 +323,7 @@ h1{
 
 .eventsTitle{
   padding-bottom:40px;
+  text-align: center;
   
 }
   .event{
@@ -291,6 +344,10 @@ h1{
   }
     .event p{
       font-size:150%;
+      font-size:23px;
+        font-weight: 0;
+        font-family:'Courier New';
+ 
     }
     .event img{
       border:2px solid #000;
@@ -306,6 +363,10 @@ h1{
         font-size:120%;
         border-bottom:2px solid #FFF;
         cursor:pointer;
+
+        font-size:23px;
+        font-weight: 0;
+        font-family:'Courier New';
       }
 
 
@@ -317,20 +378,21 @@ h1{
   
 
 }
-  .aboutMe img{
-    border-radius:20px;
-    width:30%;
-  }
-  .aboutMe p{
-    display:inline-block;
-    width:70%;
-    vertical-align: top;
-    font-size:150%;
-
-    background-color: #FFF;
-    border-radius:20px;
-    padding:15px;
-  }
+ .aboutMe li{
+   display:inline-block;
+   width:420px;
+   margin-top:0px!important;
+ }
+ .aboutMe p{
+   padding:5px;
+  font-size:20px;
+  font-family:'Courier New';
+  text-align: left;;
+ }
+ .aboutMe img{
+   width:400px;
+   height:auto;
+ }
 
 
 
@@ -339,6 +401,7 @@ h1{
 padding-top: 20px;
 padding-bottom:10px;
 height:100vh;
+margin-bottom:100px;
 }
 .contactMe p{
   font-size:200%;
@@ -360,7 +423,7 @@ height:100vh;
     padding:10px;
 
 
-    width:700px;
+    width:90vw;
     font-size:140%;
     display:block;
 
@@ -394,8 +457,10 @@ height:100vh;
   background-color:#000;
 }
 .socialMedia{
-  position:absolute;
+position:absolute;
+
   width:100%;
+
   background-image:linear-gradiant(#333333,#333333);
   border:2px solid #333333;
 }
