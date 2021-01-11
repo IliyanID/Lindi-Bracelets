@@ -6,12 +6,15 @@ import logo from '../resources/images/cilcular-logo-white.png'
 
 //import catalog from '../resources/images/bracelts.jpg';
 import stand from '../resources/images/stand.jpg'
+import sola from '../resources/images/sola.jpg'
 
 import author from '../resources/images/profile_picture.png';
 
 import etsy from '../resources/images/social-media/etsy.png';
 import facebook from '../resources/images/social-media/facebook.png';
 import instagram from '../resources/images/social-media/instagram.png';
+
+const debug = true;
 
 class App extends PureComponent {
   
@@ -35,9 +38,13 @@ class App extends PureComponent {
   }
 
   getEtsyImages = async () => {
-    let url = window.location.href+"/EtsyImages";
-    let test = "http://10.0.0.108:80/EtsyImages"
-    const response = await fetch(url);
+    let url = "http://lindibracelets.com/EtsyImages";
+    let test = "http://192.168.0.122:80/EtsyImages"
+    let response = undefined;
+    if(debug)
+       response = await fetch(test);
+    else
+        response = await fetch(url);
     const jsonData = await response.json();
 
     
@@ -46,9 +53,14 @@ class App extends PureComponent {
   };
 
   getInstagramImages = async () => {
-    let url = window.location.href+"/InstagramImages";
-    let test = "http://10.0.0.108:80/InstagramImages"
-    const response = await fetch(url);
+    let url = "http://lindibracelets.com/InstagramImages";
+    let test = "http://localhost:80/InstagramImages"
+    let response = undefined;
+    if(debug)
+       response = await fetch(test);
+    else
+        response = await fetch(url);
+
     const jsonData = await response.json();
 
     
@@ -108,7 +120,7 @@ class App extends PureComponent {
         <div className="shopButton">
           <div className="shopButtonPackage">
             <p><a href={"https://www.etsy.com/shop/LinDiBracelets?ref=simple-shop-header-name&listing_id=584303931"} target="_blank" rel="noreferrer">Go To Store</a></p>
-            <p><a href={item.link} target="_blank" rel="noreferrer">Product Details</a></p>
+            <p><a href={item.page} target="_blank" rel="noreferrer">Product Details</a></p>
           </div>
         </div>
       </li>);
@@ -125,9 +137,9 @@ class App extends PureComponent {
 
 
     let events =[
-      {id:0, pic:'https://secureservercdn.net/198.71.233.184/49c.223.myftpupload.com/wp-content/uploads/2015/09/06.22.2017_AuroraLifestyle_192-1024x682.jpg', location:"The Local Parker,CO", date:"Now", link:"https://www.google.com/maps/place/the+LOCAL+Parker/@39.5185752,-104.7620033,17z/data=!3m1!4b1!4m5!3m4!1s0x876c91fb146edb0f:0x31e54245863d15c4!8m2!3d39.5185752!4d-104.7620033"},
-      {id:1, pic:stand, location:"The Local Parker,CO", date:"Now", link:"https://www.google.com/maps/place/the+LOCAL+Parker/@39.5185752,-104.7620033,17z/data=!3m1!4b1!4m5!3m4!1s0x876c91fb146edb0f:0x31e54245863d15c4!8m2!3d39.5185752!4d-104.7620033"},
-      {id:2, pic:'//geo1.ggpht.com/cbk?panoid=VUbq-xRlkLkqNJk226wTxQ&output=thumbnail&cb_client=search.gws-prod.gps&thumb=2&yaw=47.1674&pitch=0&thumbfov=100&w=286&h=192', location:"Salon,CO", date:"Now", link:"https://www.google.com/maps/place/the+LOCAL+Parker/@39.5185752,-104.7620033,17z/data=!3m1!4b1!4m5!3m4!1s0x876c91fb146edb0f:0x31e54245863d15c4!8m2!3d39.5185752!4d-104.7620033"},
+      {id:0, pic:'https://secureservercdn.net/198.71.233.184/49c.223.myftpupload.com/wp-content/uploads/2015/09/06.22.2017_AuroraLifestyle_192-1024x682.jpg', location:"the LOCAL Southlands", date:"Now", link:"https://www.google.com/maps/dir//the+LOCAL+Southlands,+6205+S+Main+St,+Aurora,+CO+80016/@39.6043105,-104.711328,17z/data=!4m9!4m8!1m0!1m5!1m1!1s0x876c8c7ce8b12059:0xa92bdf99bdb169ca!2m2!1d-104.7091393!2d39.6043105!3e0"},
+      {id:1, pic:"https://lh5.googleusercontent.com/p/AF1QipNTD1v6zNinsi0uqhHd0jaD7vzFsTrZnVXaD8LE=s1148-k-no", location:"the LOCAL Parker", date:"Now", link:"https://www.google.com/maps/place/the+LOCAL+Parker/@39.5185752,-104.7620033,17z/data=!3m1!4b1!4m5!3m4!1s0x876c91fb146edb0f:0x31e54245863d15c4!8m2!3d39.5185752!4d-104.7620033"},
+      {id:2, pic:sola, location:"Sola Salons", date:"Now", link:"https://www.google.com/maps/dir//sola+salon/data=!4m6!4m5!1m1!4e2!1m2!1m1!1s0x876c8c7cf1023691:0xf100f2b3f623dddf?sa=X&ved=2ahUKEwj2h66O0pTuAhWEVs0KHYFTAWsQ9RcwAHoECAoQBA"},
      
       
     ];
@@ -152,9 +164,9 @@ class App extends PureComponent {
       <div ref={this.mainC} id="main-container" onScroll={this.checkSelected}>
         <nav className="navBar">
             <ul className="navList">
-                <li><a href={"https://www.instagram.com/lindibracelets/"} target="_blank" rel="noreferrer"><img className="navSocialMediaIcon"src={instagram} alt="InstagramLogo"/></a></li>
-                <li><a href={"https://www.facebook.com/LinDiBracelets/"} target="_blank" rel="noreferrer"><img className="navSocialMediaIcon"src={facebook} alt="FacebookLogo"/></a></li>
-                <li><a href={"https://www.etsy.com/shop/LinDiBracelets?ref=simple-shop-header-name&listing_id=584303931"} target="_blank" rel="noreferrer"><img className="navSocialMediaIcon"src={etsy} alt="EtsyLogo"/></a></li>
+                <li className="removeIcon"><a href={"https://www.instagram.com/lindibracelets/"} target="_blank" rel="noreferrer"><img className="navSocialMediaIcon"src={instagram} alt="InstagramLogo"/></a></li>
+                <li className="removeIcon"><a href={"https://www.facebook.com/LinDiBracelets/"} target="_blank" rel="noreferrer"><img className="navSocialMediaIcon"src={facebook} alt="FacebookLogo"/></a></li>
+                <li className="removeIcon"><a href={"https://www.etsy.com/shop/LinDiBracelets?ref=simple-shop-header-name&listing_id=584303931"} target="_blank" rel="noreferrer"><img className="navSocialMediaIcon"src={etsy} alt="EtsyLogo"/></a></li>
                 
                 <li className={this.state.navBarSelected[4]} onClick={()=>{this.scrollTo(this.ContactMe)}}>Contact Me</li>
                 <li className={this.state.navBarSelected[3]} onClick={()=>{this.scrollTo(this.AboutMe)}}>About Me</li>
@@ -175,9 +187,11 @@ class App extends PureComponent {
         
         <div ref={this.Shop} className="shop">
           <h1 >Shop</h1>
+          <div className="catalogList">
           <ul>
            {entireCatalog}
-          </ul> 
+          </ul>
+          </div> 
         </div>
 
         <div ref={this.Gallery} className="gallery">

@@ -26,7 +26,7 @@ import javax.xml.xpath.XPath;
 
 public class Server
 {
-    static String[] etsyImages = null;
+    static String[][] etsyImages = null;
     static String[] instagramImages = null;
 
     final static boolean debug = false;
@@ -40,10 +40,13 @@ public class Server
 
 
 
+
+
     private void configureRestfulApiServer() {
 
-        Spark.port(8080);
-        System.out.println("Server configured to listen on port 8080");
+
+        Spark.port(80);
+        System.out.println("Server configured to listen on port 80");
 
         //String keyStoreLocation = "deploy/keystore.jks";
         //String keyStorePassword = "password";
@@ -141,7 +144,7 @@ public class Server
             //System.out.println(allListingsJSON);
             int count = allListingsJSON.getInt("count");
             int[] individualListingsID = new int[count];
-            etsyImages = new String[count];
+            etsyImages = new String[count][2];
             String responseHTML = "";
             for(int i = 0;i < count;i++)
             {
@@ -150,12 +153,15 @@ public class Server
                     System.out.println("Current Etsy Listing ID: " + currentListingID);
                     individualListingsID[i] = currentListingID;
 
+                   String storePageURL = arrayListingsJSON.getJSONObject(i).getString("url");
+
                     String listingURL = "https://openapi.etsy.com/v2/listings/" + individualListingsID[i] + "/images?api_key=" + api_key;
                     JSONObject listingJSON = new JSONObject(getResponse(listingURL));
                     JSONArray listingID = listingJSON.getJSONArray("results");
 
                     String pictureURL = listingID.getJSONObject(0).getString("url_fullxfull");
-                    etsyImages[i] = pictureURL;
+                    etsyImages[i][0] = pictureURL;
+                    etsyImages[i][1] = storePageURL;
                     System.out.println("Main Etsy Picture: " + pictureURL);
                     responseHTML += "<img src=\"" + pictureURL + "\"style=\"width:100px;\"/>";
                 }
@@ -180,7 +186,8 @@ public class Server
             {
                 JSONObject gallery = new JSONObject();
                 gallery.put("id",i);
-                gallery.put("link",etsyImages[i]);
+                gallery.put("link",etsyImages[i][0]);
+                gallery.put("page",etsyImages[i][1]);
                 gallery.put("description","");
 
 
