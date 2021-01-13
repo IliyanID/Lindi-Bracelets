@@ -14,7 +14,7 @@ import etsy from '../resources/images/social-media/etsy.png';
 import facebook from '../resources/images/social-media/facebook.png';
 import instagram from '../resources/images/social-media/instagram.png';
 
-const debug = true;
+const debug = false;
 
 class App extends PureComponent {
   
