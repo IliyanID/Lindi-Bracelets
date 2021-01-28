@@ -15,7 +15,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build & cd & Rmdir /S /Q C:\\Users\\Iliyan\\Documents\\GitHub\\Lindi-Bracelets\\Back-End\\src\\main\\resources\\public\\build & move C:\\Users\\Iliyan\\Documents\\GitHub\\Lindi-Bracelets\\Front-End\\build C:\\Users\\Iliyan\\Documents\\GitHub\\Lindi-Bracelets\\Back-End\\src\\main\\resources\\public",
+    "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
