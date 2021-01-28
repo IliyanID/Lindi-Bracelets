@@ -38,7 +38,7 @@ class App extends PureComponent {
   }
 
   getEtsyImages = async () => {
-    let url = "http://34.106.89.214/EtsyImages";
+    let url = "http://34.106.89.214:80/EtsyImages";
     let test = "http://192.168.0.122:80/EtsyImages"
     let response = undefined;
     if(debug)
@@ -53,7 +53,7 @@ class App extends PureComponent {
   };
 
   getInstagramImages = async () => {
-    let url = "http://34.106.89.214/InstagramImages";
+    let url = "http://34.106.89.214:80/InstagramImages";
     let test = "http://localhost:80/InstagramImages"
     let response = undefined;
     if(debug)
