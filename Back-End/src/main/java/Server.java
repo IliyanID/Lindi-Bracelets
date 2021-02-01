@@ -22,6 +22,7 @@ import java.util.TimerTask;
 
 import javax.xml.xpath.XPath;
 
+import static spark.Spark.secure;
 
 
 public class Server
@@ -172,7 +173,12 @@ public class Server
 
     private void processRestfulApiRequests()
     {
-        Spark.staticFileLocation("/public/build");
+        String keyStoreLocation = "deploy/keystore.jks";
+        String keyStorePassword = "keypass";
+        secure(keyStoreLocation, keyStorePassword, null, null);
+
+
+
 
         Spark.get("/EtsyImages",(request,response)->{
             response.type("application/json");
