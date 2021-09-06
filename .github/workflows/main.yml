@@ -24,18 +24,18 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
+
+      - name: Kill Old Server
+        run: |
+          kill $(ps aux | grep 'sudo java -jar Server-1.0-jar-with-dependencies.jar&' | awk '{print $2}')
+        continue-on-error: true
+
       
       - name: Docker Setup QEMU
         uses: docker/setup-qemu-action@v1.2.0
 
       - name: action-maven
         uses: comchangs/action-maven@v0.4-beta
-
-
-      - name: Kill Old Server
-        run: |
-          kill $(ps aux | grep 'sudo java -jar Server-1.0-jar-with-dependencies.jar&' | awk '{print $2}')
-        continue-on-error: true
 
       # Runs a single command using the runners shell
       - name: Build
