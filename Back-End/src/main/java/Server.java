@@ -142,10 +142,12 @@ public class Server
             }
             catch(Exception ignored){}
         }
-        if(success)
+        if(success){
+            instagramImages =  new String[allPosts.length()];
             for(int i = 0; i < allPosts.length(); i++){
                 instagramImages[i] = instagramImages_temp[i];
             }
+        }
     }
     private void getEtsyImages(){
             String shop_id = "16417755";
