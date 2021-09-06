@@ -24,14 +24,14 @@ IGQVJWREV6UEVIazlGNlAxY3FRUm1OQUhDTWdRQmlHTGEtNGlSS1JWdFprdWxLODdXUFltcE1CR0xodW
 
 -------------------------------------------------------------------------------
 Get User Code: https://api.instagram.com/oauth/authorize?client_id=822999288270199&redirect_uri=https://localhost:3000/&scope=user_profile,user_media&response_type=code
-code: AQDbc1xOO5EY2qwLDAsdBwBTMdse29nfBeW1T-L8Hkqb7oOzYD5iVL-qwDpzKV9pK8gJyrWMfl73u7mr0EoDVmKNMyvwte5nHfN5NUuOF9JNGzuw_4HaVlI4KrWxhKrUAxvkAEW8oPyVIuw2Jgdo8ljw9ZpN4ZKp2_BXpFIhuA-LNjAq4e4INsqGNRgH5vSqU1eP5eQYoXv_mPftKc0a4TLhduQXBzbRz-w9oUHOAbH5Tg
+code: AQAvj9k5_HQX51lh6AvIL_SU_Vd_5SQ5Zvp-zV3PEh7JF15Hp5t4LQ0PKeg_4hK5-kyWayw5LBgj9wN5SEcq_rc0tkiGA5pGIVgQXqJQIp1b8mV_xLXJJnSH0oyMLIXYzK-kDuYYjqjETSEfWBvc115OtZkyFi0wAYzfO-racPrhi1r26QftQtWPKYjpwSx4DgeGEoAsdJoAQ1QomXI3OTWzXQr3nv1nOShNQvm06ok8SA#_
 -------------------------------------------------------------------------------
 
 
 -------------------------------------------------------------------------------
 (Exchange Code for Token)
-curl -X POST \ https://api.instagram.com/oauth/access_token \ -F client_id=822999288270199 \ -F client_secret=0728b92943bb20b1610862b6dcea3e01 \ -F grant_type=authorization_code \ -F redirect_uri=https://localhost:3000/ \ -F code=AQDbc1xOO5EY2qwLDAsdBwBTMdse29nfBeW1T-L8Hkqb7oOzYD5iVL-qwDpzKV9pK8gJyrWMfl73u7mr0EoDVmKNMyvwte5nHfN5NUuOF9JNGzuw_4HaVlI4KrWxhKrUAxvkAEW8oPyVIuw2Jgdo8ljw9ZpN4ZKp2_BXpFIhuA-LNjAq4e4INsqGNRgH5vSqU1eP5eQYoXv_mPftKc0a4TLhduQXBzbRz-w9oUHOAbH5Tg
-api_key(1 hour): IGQVJXVUFSLWgzSWoxTWRtcC14VzhfYl9XSFE0YklRTlNYSkhuUktSTHR4MVNqR3diUWZAqRXZAVbjIxX1BmNTdrSVFyY3FWRHZAHRVZApSXF0QlpJZAWw5UERrUkV3LUVxaDJPZAU9BVnBpdkNNZAG5KNXhfcDE0T2JfU0ZAnX3ZAn
+curl -X POST \ https://api.instagram.com/oauth/access_token \ -F client_id=822999288270199 \ -F client_secret=0728b92943bb20b1610862b6dcea3e01 \ -F grant_type=authorization_code \ -F redirect_uri=https://localhost:3000/ \ -F code=AQAvj9k5_HQX51lh6AvIL_SU_Vd_5SQ5Zvp-zV3PEh7JF15Hp5t4LQ0PKeg_4hK5-kyWayw5LBgj9wN5SEcq_rc0tkiGA5pGIVgQXqJQIp1b8mV_xLXJJnSH0oyMLIXYzK-kDuYYjqjETSEfWBvc115OtZkyFi0wAYzfO-racPrhi1r26QftQtWPKYjpwSx4DgeGEoAsdJoAQ1QomXI3OTWzXQr3nv1nOShNQvm06ok8SA#_
+api_key(1 hour): IGQVJVSlpwemFQMDlNQ3FTeEg5XzZAqeUh2elY2UUtzZATVqS3FsSjZAWa3lGSm95ZAENNa2dGeTFrQWJQWWlJT1ZAKMWJETDJWTEJOdHhXUzlXZA2ZAydmdEX2xhUTBTVFZAVelpwTDZAIU3BmNk9ycjZApb3gtTFEyVmpTVlNfTTc4
 -------------------------------------------------------------------------------
 
 
@@ -41,9 +41,9 @@ api_key(1 hour): IGQVJXVUFSLWgzSWoxTWRtcC14VzhfYl9XSFE0YklRTlNYSkhuUktSTHR4MVNqR
 https://graph.instagram.com/access_token
   ?grant_type=ig_exchange_token
   &client_secret=0728b92943bb20b1610862b6dcea3e01
-  &access_token=IGQVJXVUFSLWgzSWoxTWRtcC14VzhfYl9XSFE0YklRTlNYSkhuUktSTHR4MVNqR3diUWZAqRXZAVbjIxX1BmNTdrSVFyY3FWRHZAHRVZApSXF0QlpJZAWw5UERrUkV3LUVxaDJPZAU9BVnBpdkNNZAG5KNXhfcDE0T2JfU0ZAnX3ZAn
+  &access_token=IGQVJVSlpwemFQMDlNQ3FTeEg5XzZAqeUh2elY2UUtzZATVqS3FsSjZAWa3lGSm95ZAENNa2dGeTFrQWJQWWlJT1ZAKMWJETDJWTEJOdHhXUzlXZA2ZAydmdEX2xhUTBTVFZAVelpwTDZAIU3BmNk9ycjZApb3gtTFEyVmpTVlNfTTc4
 
-api_key(60 days): IGQVJXRVNDb3ozbVZA2QVJEQUN2WjI2UHpWVFVrbWVLM0xaNXI4cG1fYUpRWU1hVmk4Y0NNZAEdTelBLSk9SMVNvdmpTM1hUakpVMkN5RkduNVc4ZAXMtb0JQY3BYcUtqemtuSklQOG5n
+api_key(60 days): IGQVJXbVNWVTBwMURkOVllWmY3WkZAlOG15bkg3V0FhYW9UQ2V2LUwwN1JIOG41UEZADZAndpUjd0RUVWbTh3UmNVZATJfaW43alBMQzNITHMwNzhPU3lmbV85VVFWeUJic1FLaktwR25n
 -------------------------------------------------------------------------------
 
 
@@ -51,6 +51,6 @@ api_key(60 days): IGQVJXRVNDb3ozbVZA2QVJEQUN2WjI2UHpWVFVrbWVLM0xaNXI4cG1fYUpRWU1
 (Refresh long temm Token)
 https://graph.instagram.com/refresh_access_token
   ?grant_type=ig_refresh_token
-  &access_token=IGQVJYU2F0TnFCcmg0YjVDaG9WbVlXMklEX2wwYzY2ZAWR4YjBxTmFCTVpaT3NDNS1lUjF5SEtieFdLSGc1aU94emVsZAWxreFFDYlZATWlNmWlNZAd0xCOEZAxRU1TdHVEMDM3OV9jWkR3
+  &access_token=IGQVJVNWxldmpTaUxtanpGRTNxSUFtc1YzM1ZAlbS1IQk0zVWw3Sk5fYlY4MzJsdWlCb1RjRXlBZAGgtSEtSSHlVdlEydGR0NnotQXRGZAktWc3FrUmY3X3VLdmZAuT250WDlvNE5HTXh3
 
 --------------------------------------------------------------------------------

@@ -127,6 +127,18 @@ class App extends PureComponent {
     })
 
     let entireGallery = this.state.gallery.map((item)=>{
+      if(item.link.includes(".mp4")){
+        return(
+          <li key={item.id}>
+          <video  autoPlay muted loop>
+
+  <source src={item.link} type="video/mp4" />
+
+
+</video>
+          </li>
+        );
+      }
       return(
       <li key={item.id}>
         <img src={item.link} alt="stand"/>

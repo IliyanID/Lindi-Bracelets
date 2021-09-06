@@ -5,12 +5,14 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.webServer</groupId>
-    <artifactId>LindiBraclet</artifactId>
+    <artifactId>Server</artifactId>
     <version>1.0</version>
+
 
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
+        <java.home>C:\Program Files\Java\jdk1.8.0_281\bin</java.home>
     </properties>
 
     <dependencies>
@@ -67,24 +69,30 @@
 
     <build>
         <plugins>
-
-
             <plugin>
                 <artifactId>maven-assembly-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>single</goal>
-                        </goals>
-                    </execution>
-                </executions>
                 <configuration>
-                    <descriptorRefs>
-                        <descriptorRef>jar-with-dependencies</descriptorRef>
-                    </descriptorRefs>
+                  <archive>
+                    <manifest>
+                      <mainClass>Server</mainClass>
+                    </manifest>
+                  </archive>
+                  <descriptorRefs>
+                    <descriptorRef>jar-with-dependencies</descriptorRef>
+                  </descriptorRefs>
                 </configuration>
-            </plugin>
+                <executions>
+                  <execution>
+                  <id>make-assembly</id>
+                  <phase>package</phase>
+                  <goals>
+                    <goal>single</goal>
+                  </goals>
+                  </execution>
+                </executions>
+              </plugin>
+
         </plugins>
     </build>
+
 </project>

@@ -27,6 +27,8 @@ import static spark.Spark.secure;
 
 public class Server
 {
+    String insta_key = "IGQVJVNWxldmpTaUxtanpGRTNxSUFtc1YzM1ZAlbS1IQk0zVWw3Sk5fYlY4MzJsdWlCb1RjRXlBZAGgtSEtSSHlVdlEydGR0NnotQXRGZAktWc3FrUmY3X3VLdmZAuT250WDlvNE5HTXh3";
+
     static String[][] etsyImages = null;
     static String[] instagramImages = null;
 
@@ -69,10 +71,19 @@ public class Server
         }, delay, period);
 
 
+        timer.scheduleAtFixedRate(new TimerTask() {
+            public void run() {
+                JSONObject obj = new JSONObject(getResponse(insta_key));
+                insta_key = obj.getString("access_token");
+            }
+        }, delay, period*10);
 
 
 
-       /* if(debug)
+
+
+
+       if(debug)
         {
             String projectDir = System.getProperty("user.dir");
             projectDir = new File(projectDir).getParent().toString();
@@ -84,7 +95,7 @@ public class Server
         }
         else{
             Spark.staticFileLocation("/public/build");
-        }*/
+        }
 
 
        // Spark.secure("deploy/KeyStore.jks", "password", null, null);
@@ -116,19 +127,25 @@ public class Server
         return returnStr;
     }
     private void getInstagramImages(){
-        String api_key = "IGQVJXRVNDb3ozbVZA2QVJEQUN2WjI2UHpWVFVrbWVLM0xaNXI4cG1fYUpRWU1hVmk4Y0NNZAEdTelBLSk9SMVNvdmpTM1hUakpVMkN5RkduNVc4ZAXMtb0JQY3BYcUtqemtuSklQOG5n";
-        String allPostsURL = "https://graph.instagram.com/me/media?fields=media_url&access_token=" + api_key;
+
+        String allPostsURL = "https://graph.instagram.com/me/media?fields=media_url&access_token=" + insta_key;
 
         JSONArray allPosts = new JSONArray(new JSONObject(getResponse(allPostsURL)).getJSONArray("data"));
-        instagramImages = new String[allPosts.length()];
+        String[] instagramImages_temp = new String[allPosts.length()];
+        boolean success = false;
         for(int i =0; i<allPosts.length();i++)
         {
             try {
-                instagramImages[i] = allPosts.getJSONObject(i).getString("media_url");
-                System.out.println("Instagram URL: " + instagramImages[i]);
+                instagramImages_temp[i] = allPosts.getJSONObject(i).getString("media_url");
+                System.out.println("Instagram URL: " + instagramImages_temp[i]);
+                success = true;
             }
             catch(Exception ignored){}
         }
+        if(success)
+            for(int i = 0; i < allPosts.length(); i++){
+                instagramImages[i] = instagramImages_temp[i];
+            }
     }
     private void getEtsyImages(){
             String shop_id = "16417755";
@@ -168,14 +185,15 @@ public class Server
                 }
                 catch(Exception ignored){}
             }
+            System.out.println("Received Resources");
 
     }
 
     private void processRestfulApiRequests()
     {
-        String keyStoreLocation = "deploy/keystore.jks";
+        /*String keyStoreLocation = "deploy/keystore.jks";
         String keyStorePassword = "keypass";
-        secure(keyStoreLocation, keyStorePassword, null, null);
+        secure(keyStoreLocation, keyStorePassword, null, null);*/
 
 
 
