@@ -30,6 +30,7 @@ jobs:
           kill $(ps aux | grep 'sudo java -jar Server-1.0-jar-with-dependencies.jar&' | awk '{print $2}')
         continue-on-error: true
 
+
       
       - name: Docker Setup QEMU
         uses: docker/setup-qemu-action@v1.2.0
