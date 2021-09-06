@@ -25,8 +25,10 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
-      - name: Mvn cmd
-        uses: qcastel/github-actions-maven-cmd@1.0.1
+      - name: Build	
+        uses: qcastel/github-actions-maven/actions/maven@master
+        with:
+          maven-args: "clean install"
 
       - name: Kill Old Server
         run: |
