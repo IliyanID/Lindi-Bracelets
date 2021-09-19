@@ -1,6 +1,7 @@
 package com.tco.Server;
 
-import spark.Spark;
+
+import spark.Service;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,6 +24,8 @@ public class Server
     private final Logger log = LoggerFactory.getLogger(Server.class);
     private Etsy etsy;
     private Instagram instagram;
+    private Service https;
+    private Service http;
 
     public Server()
     {
@@ -31,25 +34,18 @@ public class Server
     }
 
     private void configureRestfulApiServer() {
-        Spark.port(443);
-        System.out.println("Server configured to listen on port 80");
+        https = Service.ignite().port(443).threadPool(20);
+        http = Service.ignite().port(80).threadPool(10);
+        System.out.println("Server configured to listen on port 80 and 443");
 
         
 
 
         String keyStoreLocation = new Config().getRootDirectory() + "/Back-End/src/main/resources/mykeystore.jks";
         String keyStorePassword = "password";
-        Spark.secure(keyStoreLocation, keyStorePassword, null, null);
-        Spark.before(((request, response) -> {
-            final String url = request.url();
-            if (url.startsWith("http://"))
-            {
-                final String[] split = url.split("http://");
-                response.redirect("https://" + split[1]);
-            }
-        }));
+        https.secure(keyStoreLocation, keyStorePassword, null, null);
 
-        Spark.staticFiles.location("/public/build");
+        https.staticFiles.location("/public/build");
 
         Timer timer = new Timer();
         timer.scheduleAtFixedRate(new TimerTask() {
@@ -72,20 +68,29 @@ public class Server
 
     private void processRestfulApiRequests()
     {
-        Spark.get("/EtsyImages",(request,response)->{
+        https.get("/EtsyImages",(request,response)->{
             response.type("application/json");
             response.header("Access-Control-Allow-Origin","*");
             response.status(200); //Success
             return etsy.getJSONResponse();
         });
 
-        Spark.get("/InstagramImages",(request,response)->{
+        https.get("/InstagramImages",(request,response)->{
             response.type("application/json");
             response.header("Access-Control-Allow-Origin","*");
             response.status(200); //Success
 
             return instagram.getJSONResponse();
         });
+
+        http.before(((request, response) -> {
+            final String url = request.url();
+            if (url.startsWith("http://"))
+            {
+                final String[] split = url.split("http://");
+                response.redirect("https://" + split[1]);
+            }
+        }));
     }
 
     public static void main(String[] args)
