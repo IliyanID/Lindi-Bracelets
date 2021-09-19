@@ -54,8 +54,8 @@ public class Server
         timer.scheduleAtFixedRate(new TimerTask() {
             public void run() {
                 log.info("Refreshing Resources");
-                //etsy = new Etsy();
-                //instagram = new Instagram();
+                etsy = new Etsy();
+                instagram = new Instagram();
                 
             }
         }, 0, period);
