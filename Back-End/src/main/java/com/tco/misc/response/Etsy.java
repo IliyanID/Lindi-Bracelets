@@ -36,6 +36,7 @@ public class Etsy extends Response{
 
     private String getItemCoverPhoto(int id,String APIKey){
         try{
+            Thread.sleep(500);
             String requestURL = "https://openapi.etsy.com/v2/listings/" + id + "/images?api_key=" + APIKey;
             JSONObject coverPhotoObj= new Request(requestURL).getArray("results").getJSONObject(0);
             return coverPhotoObj.getString("url_fullxfull");
