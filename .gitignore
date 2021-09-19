@@ -5,7 +5,7 @@ Server-2.0.jar
 
 /Front-End/build
 /Front-End/node_modules
-
+/Back-End/src/main/resources/public/build
 *.jar
 Server-2.0.jar
 .classpath
@@ -14,6 +14,6 @@ Server-2.0.jar
 
 */target/*
 */target/**
-Back-End/src/main/resources/client.cer
+
 *.class
 
