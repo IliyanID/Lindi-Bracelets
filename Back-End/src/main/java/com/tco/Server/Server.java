@@ -84,10 +84,6 @@ public class Server
         });
 
         https.get("/defaultsite",(request,response)->{
-            response.type("application/json");
-            response.header("Access-Control-Allow-Origin","*");
-            response.status(200); //Success
-
             response.redirect("https://www.lindibracelets.com");
             return "";
         });
