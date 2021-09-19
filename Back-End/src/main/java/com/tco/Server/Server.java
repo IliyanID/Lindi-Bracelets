@@ -83,6 +83,15 @@ public class Server
             return instagram.getJSONResponse();
         });
 
+        https.get("/defaultsite",(request,response)->{
+            response.type("application/json");
+            response.header("Access-Control-Allow-Origin","*");
+            response.status(200); //Success
+
+            response.redirect("https://wwww.lindibracelets.com");
+            return "";
+        });
+
         http.before(((request, response) -> {
             final String url = request.url();
             if (url.startsWith("http://"))
@@ -90,6 +99,7 @@ public class Server
                 final String[] split = url.split("http://");
                 response.redirect("https://" + split[1]);
             }
+            
         }));
     }
 
