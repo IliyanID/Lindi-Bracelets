@@ -26,6 +26,9 @@ public class Server
     private Service https;
     private Service http;
 
+    private int NumOfInstaRequests = 0;
+    private int NumOfEtsyRequests = 0;
+
     public Server()
     {
         this.configureRestfulApiServer();
@@ -67,10 +70,22 @@ public class Server
 
     private void processRestfulApiRequests()
     {
+        https.get("/Analytics",(request,response)->{
+            response.type("text/html");
+            response.header("Access-Control-Allow-Origin","*");
+            response.status(200); //Success
+            return (
+                "Number of Visits: " + Math.min(NumOfEtsyRequests,NumOfInstaRequests) + "<br/>"+
+                "Number of Requests for Etsy Images: " + NumOfEtsyRequests + "<br/>"+
+                "Number of Requests for Instagram Images: " + NumOfInstaRequests + "<br/>"
+            );
+        });
+
         https.get("/EtsyImages",(request,response)->{
             response.type("application/json");
             response.header("Access-Control-Allow-Origin","*");
             response.status(200); //Success
+            NumOfEtsyRequests++;
             return etsy.getJSONResponse();
         });
 
@@ -79,6 +94,7 @@ public class Server
             response.header("Access-Control-Allow-Origin","*");
             response.status(200); //Success
 
+            NumOfInstaRequests++;
             return instagram.getJSONResponse();
         });
 
