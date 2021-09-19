@@ -19,8 +19,7 @@ import com.tco.misc.Config;
 
 public class Server
 {
-    //private final int delay = 10000; // delay for 10 sec.
-    private final int period = 3600000 * 24; // repeat every 24 hours.
+    private final int period = 3600000; // repeat every hour.
     private final Logger log = LoggerFactory.getLogger(Server.class);
     private Etsy etsy;
     private Instagram instagram;
@@ -62,7 +61,7 @@ public class Server
                 log.info("Refreshing APIKey");
                 new RefreshToken();
             }
-        }, period*10, period*10);
+        }, period*10*24, period*10*24);
 
     }
 
