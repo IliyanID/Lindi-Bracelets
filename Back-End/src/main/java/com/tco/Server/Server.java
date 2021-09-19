@@ -40,6 +40,14 @@ public class Server
         String keyStoreLocation = new Config().getRootDirectory() + "/Back-End/src/main/resources/mykeystore.jks";
         String keyStorePassword = "password";
         Spark.secure(keyStoreLocation, keyStorePassword, null, null);
+        Spark.before(((request, response) -> {
+            final String url = request.url();
+            if (url.startsWith("http://"))
+            {
+                final String[] split = url.split("http://");
+                response.redirect("https://" + split[1]);
+            }
+        }));
 
         Spark.staticFiles.location("/public/build");
 
