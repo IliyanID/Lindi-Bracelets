@@ -30,7 +30,7 @@ public class Config {
     }
 
     public void ReadConfig() {
-        String configPath = new File("").getAbsolutePath() + "/APIconfig.json";
+        String configPath = getRootDirectory() + "/Back-End/src/main/resources/APIconfig.json";
         try (BufferedReader br = new BufferedReader(new FileReader(configPath))) {
             String objStr = "";
             String line;
@@ -60,5 +60,17 @@ public class Config {
 
         return null;
 
+    }
+
+    public String getRootDirectory(){
+        String dir = new File("").getAbsolutePath();
+        //System.out.println(dir);
+        String rootGoal = "Lindi-Bracelets";
+        while(!dir.substring(dir.length() - rootGoal.length()).equals(rootGoal)){
+            //System.out.println(dir.substring(dir.length() - rootGoal.length()));
+            dir = new File(dir).getParent();
+        }
+        log.info("Root Directory is: " + dir);
+        return dir;
     }
 }

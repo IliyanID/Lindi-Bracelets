@@ -38,13 +38,11 @@ class App extends PureComponent {
   }
 
   getEtsyImages = async () => {
-    let url = "http://34.106.89.214:80/EtsyImages";
-    let test = "http://192.168.0.122:80/EtsyImages"
-    let response = undefined;
-    if(debug)
-       response = await fetch(test);
-    else
-        response = await fetch(url);
+    let url = "https://34.106.89.214:443/EtsyImages";
+    if(window.location.hostname === "localhost")
+       url = "https://localhost:443/EtsyImages"
+
+    let response = await fetch(url);
     const jsonData = await response.json();
 
     
@@ -53,13 +51,11 @@ class App extends PureComponent {
   };
 
   getInstagramImages = async () => {
-    let url = "http://34.106.89.214:80/InstagramImages";
-    let test = "http://localhost:80/InstagramImages"
-    let response = undefined;
-    if(debug)
-       response = await fetch(test);
-    else
-        response = await fetch(url);
+    let url = "https://34.106.89.214:443/InstagramImages";
+    if(window.location.hostname === "localhost")
+      url = "https://localhost:443/InstagramImages"
+
+    let response = await fetch(url);
 
     const jsonData = await response.json();
 

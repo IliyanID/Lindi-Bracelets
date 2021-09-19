@@ -2,7 +2,6 @@ package com.tco.Server;
 
 import spark.Spark;
 
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -15,10 +14,7 @@ import java.util.TimerTask;
 import com.tco.misc.response.Etsy;
 import com.tco.misc.response.Instagram;
 import com.tco.misc.RefreshToken;
-
-
-
-
+import com.tco.misc.Config;
 
 public class Server
 {
@@ -35,12 +31,15 @@ public class Server
     }
 
     private void configureRestfulApiServer() {
-        Spark.port(80);
+        Spark.port(443);
         System.out.println("Server configured to listen on port 80");
 
-        //String keyStoreLocation = "deploy/keystore.jks";
-        //String keyStorePassword = "password";
-        //Spark.secure(keyStoreLocation, keyStorePassword, null, null);
+        
+
+
+        String keyStoreLocation = new Config().getRootDirectory() + "/Back-End/src/main/resources/mykeystore.jks";
+        String keyStorePassword = "password";
+        Spark.secure(keyStoreLocation, keyStorePassword, null, null);
 
         Spark.staticFiles.location("/public/build");
 
