@@ -42,6 +42,8 @@ public class Server
         //String keyStorePassword = "password";
         //Spark.secure(keyStoreLocation, keyStorePassword, null, null);
 
+        Spark.staticFiles.location("/public/build");
+
         Timer timer = new Timer();
         timer.scheduleAtFixedRate(new TimerTask() {
             public void run() {
