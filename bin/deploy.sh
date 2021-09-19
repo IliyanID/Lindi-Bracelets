@@ -1,4 +1,6 @@
+nvm install node
 cd ../Front-End
+npm install
 npm run build
 
 echo Removing old Build
