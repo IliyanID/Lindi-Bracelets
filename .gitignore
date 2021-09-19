@@ -1,8 +1,5 @@
-./Back-End/target/
-./Back-End/target/public
-./Back-End/target/public/build
-./Back-End/target/public/build/static/js/*
+
 main.*
+Server-2.0.jar
 *.jar
-./Back-End/target/public/build/*
-./Front-End/build/
+/Back-End/target
