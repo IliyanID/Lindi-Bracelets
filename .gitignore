@@ -1,0 +1,8 @@
+./Back-End/target/
+./Back-End/target/public
+./Back-End/target/public/build
+./Back-End/target/public/build/static/js/*
+main.*
+*.jar
+./Back-End/target/public/build/*
+./Front-End/build/
