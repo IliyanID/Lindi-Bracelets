@@ -88,7 +88,7 @@ public class Server
             response.header("Access-Control-Allow-Origin","*");
             response.status(200); //Success
 
-            response.redirect("https://wwww.lindibracelets.com");
+            response.redirect("https://www.lindibracelets.com");
             return "";
         });
 
