@@ -47,7 +47,6 @@ class App extends PureComponent {
 
     
     this.setState({shop:jsonData});
-    console.log(jsonData)
   };
 
   getInstagramImages = async () => {
@@ -61,7 +60,6 @@ class App extends PureComponent {
 
     
     this.setState({gallery:jsonData});
-    console.log(jsonData)
   };
 
   scrollTo(ref){
