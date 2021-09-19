@@ -18,13 +18,14 @@ let contactMe = (props) =>{
            }
 
         if(email !== "" && subject !== "" && message !== ""){
-            emailjs.send('service_ocq50ip', 'template_ew0t8ol', templateParams, 'user_m0QGP3CClZeBUJkrNaonS')
+            emailjs.send('service_vrvvtbe', 'template_emvrtp9', templateParams, 'user_gdLo4Hhs1KRlF1TLLnEy1')
             .then((result) => {
                 alert("Email Sent Succesfully")
                 console.log(result.text);
                 document.getElementById("email").value = "";
                 document.getElementById("subject").value = "";
                 document.getElementById("content").value = "";
+                console.log(result);
             }, (error) => {
                 alert("Email Not Sent");
                 console.log(error.text);
