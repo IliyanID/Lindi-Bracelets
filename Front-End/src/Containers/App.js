@@ -14,6 +14,8 @@ import etsy from '../resources/images/social-media/etsy.png';
 import facebook from '../resources/images/social-media/facebook.png';
 import instagram from '../resources/images/social-media/instagram.png';
 
+import ContactMe from '../Components/contactMe/contactMe'
+
 const debug = false;
 
 class App extends PureComponent {
@@ -245,16 +247,7 @@ class App extends PureComponent {
           </ul>
         </div>
 
-        <div ref={this.ContactMe} className="contactMe">
-          <h1>Contact Me</h1>
-          <p>Got something different in mind? Send me an email and we can make it a realty</p>
-          <form className="contactMeForm">
-            <input type="text" placeholder="Email"></input>
-            <input type="text" placeholder="Subject"></input>
-            <textarea  className="formContent"></textarea >
-            <button className="button" type="submit">Submit</button>
-          </form>
-        </div>
+        <ContactMe refs={this.ContactMe}/>
 
 
         <div className="socialMedia">
