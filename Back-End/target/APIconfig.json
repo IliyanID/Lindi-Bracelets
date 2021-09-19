@@ -1,0 +1,12 @@
+[
+    {
+        "requestName" : "Etsy",
+        "requestBaseURL" : "https://openapi.etsy.com/v2/shops/16417755/listings/active?api_key=",
+        "APIKey" : "n4vavv9beuogz0iewzt0to7v"
+    },
+    {
+        "requestName" : "Instagram",
+        "requestBaseURL" : "https://graph.instagram.com/me/media?fields=media_url&access_token=",
+        "APIKey" : "IGQVJWaDNSWXo3Q2IzVThVUlkxWW1fZAjBaZAW93cFBPVFZAfYmZA0dWxrQnFDWWxDdkpNaFl2TDZATYWxiYVdEOE5lb2hESmVYT2VyZAWY5a25oNllQNEdGLTBGZAlNyb0ZALRnpHN2l3RElB"
+    }
+]
