@@ -34,10 +34,6 @@ public class Server
         this.processRestfulApiRequests();
     }
 
-
-
-
-
     private void configureRestfulApiServer() {
         Spark.port(80);
         System.out.println("Server configured to listen on port 80");
