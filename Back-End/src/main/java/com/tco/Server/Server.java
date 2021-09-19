@@ -17,6 +17,7 @@ import com.tco.misc.response.Instagram;
 import com.tco.misc.RefreshToken;
 import com.tco.misc.Config;
 
+
 public class Server
 {
     private final int period = 3600000; // repeat every hour.
@@ -26,8 +27,8 @@ public class Server
     private Service https;
     private Service http;
 
-    private int NumOfInstaRequests = 0;
-    private int NumOfEtsyRequests = 0;
+  
+    private Analytics analytics;
 
     public Server()
     {
@@ -40,7 +41,7 @@ public class Server
         http = Service.ignite().port(80).threadPool(10);
         System.out.println("Server configured to listen on port 80 and 443");
 
-        
+        analytics = new Analytics();
 
 
         String keyStoreLocation = new Config().getRootDirectory() + "/Back-End/src/main/resources/mykeystore.jks";
@@ -53,8 +54,8 @@ public class Server
         timer.scheduleAtFixedRate(new TimerTask() {
             public void run() {
                 log.info("Refreshing Resources");
-                etsy = new Etsy();
-                instagram = new Instagram();
+                //etsy = new Etsy();
+                //instagram = new Instagram();
                 
             }
         }, 0, period);
@@ -74,18 +75,16 @@ public class Server
             response.type("text/html");
             response.header("Access-Control-Allow-Origin","*");
             response.status(200); //Success
-            return (
-                "Number of Visits: " + Math.min(NumOfEtsyRequests,NumOfInstaRequests) + "<br/>"+
-                "Number of Requests for Etsy Images: " + NumOfEtsyRequests + "<br/>"+
-                "Number of Requests for Instagram Images: " + NumOfInstaRequests + "<br/>"
-            );
+            return analytics.returnHTML();
         });
 
         https.get("/EtsyImages",(request,response)->{
             response.type("application/json");
             response.header("Access-Control-Allow-Origin","*");
             response.status(200); //Success
-            NumOfEtsyRequests++;
+            
+            analytics.newEtsyRequest(request.userAgent(), request.ip());
+
             return etsy.getJSONResponse();
         });
 
@@ -94,7 +93,7 @@ public class Server
             response.header("Access-Control-Allow-Origin","*");
             response.status(200); //Success
 
-            NumOfInstaRequests++;
+            analytics.newInstaRequest();
             return instagram.getJSONResponse();
         });
 
