@@ -36,7 +36,7 @@ let contactMe = (props) =>{
     }
 
     return(
-        <div ref={props.refs} className="contactMe">
+        <div ref={props.ContactMeRef} className="contactMe">
           <h1>Contact Me</h1>
           <p>Got something different in mind? Send me an email and we can make it a realty</p>
           <form onSubmit={submit}className="contactMeForm">

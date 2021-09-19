@@ -3,20 +3,18 @@ import React, { PureComponent } from 'react';
 import './App.css';
 
 import logo from '../resources/images/cilcular-logo-white.png'
-
-//import catalog from '../resources/images/bracelts.jpg';
-import stand from '../resources/images/stand.jpg'
-import sola from '../resources/images/sola.jpg'
-
-import aboutme from '../resources/images/aboutme3.jpg';
-
 import etsy from '../resources/images/social-media/etsy.png';
 import facebook from '../resources/images/social-media/facebook.png';
 import instagram from '../resources/images/social-media/instagram.png';
 
-import ContactMe from '../Components/contactMe/contactMe'
+import SplashPage from '../Components/SplashPage/SplashPage'
+import Shop from '../Components/Shop/Shop'
+import Gallery from '../Components/Gallery/Gallery'
+import Events from '../Components/Events/Events'
+import AboutMe from '../Components/AboutMe/AboutMe'
+import ContactMe from '../Components/ContactMe/ContactMe'
+import SocialMedia from '../Components/SocialMedia/SocialMedia'
 
-const debug = false;
 
 class App extends PureComponent {
   
@@ -24,45 +22,36 @@ class App extends PureComponent {
   {
     super(props)
     this.mainC = React.createRef();
-    this.Shop = React.createRef();
-    this.Gallery = React.createRef();
-    this.Events = React.createRef();
-    this.AboutMe = React.createRef(); 
-    this.ContactMe = React.createRef(); 
-    this.getEtsyImages();
-    this.getInstagramImages();
+    this.ShopRef = React.createRef();
+    this.GalleryRef = React.createRef();
+    this.EventsRef = React.createRef();
+    this.AboutMeRef = React.createRef(); 
+    this.ContactMeRef = React.createRef(); 
+
+    this.Request("EtsyImages");
+    this.Request("InstagramImages");
+
   }
+
+  Request = async (request)=>{
+    let url = "https://www.lindibracelets.com/" + request;
+    if(window.location.hostname === "localhost")
+       url = "https://localhost:443/" + request
+
+    let response = await fetch(url);
+    const jsonData = await response.json();
+    
+    let tempState = {...this.state}
+    tempState[request] = jsonData;
+
+    this.setState( tempState);
+}
   
   state = {
     navBarSelected:["","","","",""],
-    shop:[{id:"",link:"",description:""}],
-    gallery:[{id:"",link:"",description:""}]
+    EtsyImages:[{id:"",link:"",description:""}],
+    InstagramImages:[{id:"",link:"",description:""}]
   }
-
-  getEtsyImages = async () => {
-    let url = "https://www.lindibracelets.com/EtsyImages";
-    if(window.location.hostname === "localhost")
-       url = "https://localhost:443/EtsyImages"
-
-    let response = await fetch(url);
-    const jsonData = await response.json();
-
-    
-    this.setState({shop:jsonData});
-  };
-
-  getInstagramImages = async () => {
-    let url = "https://www.lindibracelets.com/InstagramImages";
-    if(window.location.hostname === "localhost")
-      url = "https://localhost:443/InstagramImages"
-
-    let response = await fetch(url);
-
-    const jsonData = await response.json();
-
-    
-    this.setState({gallery:jsonData});
-  };
 
   scrollTo(ref){
     ref.current.scrollIntoView(true);
@@ -70,19 +59,19 @@ class App extends PureComponent {
   }
 
   checkSelected = () =>{
-    if(this.inViewPort(this.Shop)){
+    if(this.inViewPort(this.ShopRef)){
       this.setState({navBarSelected:["navListSelected","","","",""]})
     }
-    else if(this.inViewPort(this.Gallery)){
+    else if(this.inViewPort(this.GalleryRef)){
       this.setState({navBarSelected:["","navListSelected","","",""]})
     }
-   else if(this.inViewPort(this.Events)){
+   else if(this.inViewPort(this.EventsRef)){
      this.setState({navBarSelected:["","","navListSelected","",""]})
    }
-   else if(this.inViewPort(this.AboutMe)){
+   else if(this.inViewPort(this.AboutMeRef)){
      this.setState({navBarSelected:["","","","navListSelected",""]})
    }
-   else if(this.inViewPort(this.ContactMe)){
+   else if(this.inViewPort(this.ContactMeRef)){
      this.setState({navBarSelected:["","","","","navListSelected"]})
    }
    else{
@@ -91,83 +80,22 @@ class App extends PureComponent {
   }
 
   inViewPort = (ref) =>{
-   let el = ref.current;
-   let percentVisible = 10;
-    let
-    rect = el.getBoundingClientRect(),
-    windowHeight = (window.innerHeight || document.documentElement.clientHeight);
+    if(ref && ref.current){
+      let el = ref.current;
+      let percentVisible = 10;
+      let rect = el.getBoundingClientRect(),
+      windowHeight = (window.innerHeight || document.documentElement.clientHeight);
 
-  return !(
-    Math.floor(100 - (((rect.top >= 0 ? 0 : rect.top) / +-(rect.height / 1)) * 100)) < percentVisible ||
-    Math.floor(100 - ((rect.bottom - windowHeight) / rect.height) * 100) < percentVisible
-  )
+      return !(
+        Math.floor(100 - (((rect.top >= 0 ? 0 : rect.top) / +-(rect.height / 1)) * 100)) < percentVisible ||
+        Math.floor(100 - ((rect.bottom - windowHeight) / rect.height) * 100) < percentVisible
+      )
+    }
+    else
+      return false;
   }
 
-  
-
-
   render () {
-    
-
- 
-    let entireCatalog = this.state.shop.map((item) =>{
-      return (
-      <li key = {item.id} style={{backgroundImage: `url(${item.link})`}}>
-        <div className="shopButton">
-          <div className="shopButtonPackage">
-            <p><a href={"https://www.etsy.com/shop/LinDiBracelets?ref=simple-shop-header-name&listing_id=584303931"} target="_blank" rel="noreferrer">Go To Store</a></p>
-            <p><a href={item.page} target="_blank" rel="noreferrer">Product Details</a></p>
-          </div>
-        </div>
-      </li>);
-    })
-
-    let entireGallery = this.state.gallery.map((item)=>{
-      if(item.link.includes(".mp4")){
-        return(
-          <li key={item.id}>
-          <video  autoPlay muted loop>
-
-  <source src={item.link} type="video/mp4" />
-
-
-</video>
-          </li>
-        );
-      }
-      return(
-      <li key={item.id}>
-        <img src={item.link} alt="stand"/>
-      </li>);
-    })
-      
-
-
-
-    let events =[
-      {id:0, pic:'https://secureservercdn.net/198.71.233.184/49c.223.myftpupload.com/wp-content/uploads/2015/09/06.22.2017_AuroraLifestyle_192-1024x682.jpg', location:"the LOCAL Southlands", date:"Now", link:"https://www.google.com/maps/dir//the+LOCAL+Southlands,+6205+S+Main+St,+Aurora,+CO+80016/@39.6043105,-104.711328,17z/data=!4m9!4m8!1m0!1m5!1m1!1s0x876c8c7ce8b12059:0xa92bdf99bdb169ca!2m2!1d-104.7091393!2d39.6043105!3e0"},
-      {id:1, pic:"https://lh5.googleusercontent.com/p/AF1QipNTD1v6zNinsi0uqhHd0jaD7vzFsTrZnVXaD8LE=s1148-k-no", location:"the LOCAL Parker", date:"Now", link:"https://www.google.com/maps/place/the+LOCAL+Parker/@39.5185752,-104.7620033,17z/data=!3m1!4b1!4m5!3m4!1s0x876c91fb146edb0f:0x31e54245863d15c4!8m2!3d39.5185752!4d-104.7620033"},
-      {id:2, pic:sola, location:"Sola Salons", date:"Now", link:"https://www.google.com/maps/dir//sola+salon/data=!4m6!4m5!1m1!4e2!1m2!1m1!1s0x876c8c7cf1023691:0xf100f2b3f623dddf?sa=X&ved=2ahUKEwj2h66O0pTuAhWEVs0KHYFTAWsQ9RcwAHoECAoQBA"},
-     
-      
-    ];
-    let allEvents = events.map((event) =>{
-      return(
-      <li className="event"key={event.id}>
-        <a href={event.link} target="_blank" rel="noreferrer"><img src={event.pic} alt="eventLocation"/></a>
-        <div className="eventDescription">
-          <p>
-            Where: <a href={event.link} target="_blank" rel="noreferrer">{event.location}</a>
-          </p>
-          
-          <p>
-            When: {event.date}
-          </p>
-          </div>
-      </li>);
-    })
-
-
     return (
       <div ref={this.mainC} id="main-container" onScroll={this.checkSelected}>
         <nav className="navBar">
@@ -176,88 +104,24 @@ class App extends PureComponent {
                 <li className="removeIcon"><a href={"https://www.facebook.com/LinDiBracelets/"} target="_blank" rel="noreferrer"><img className="navSocialMediaIcon"src={facebook} alt="FacebookLogo"/></a></li>
                 <li className="removeIcon"><a href={"https://www.etsy.com/shop/LinDiBracelets?ref=simple-shop-header-name&listing_id=584303931"} target="_blank" rel="noreferrer"><img className="navSocialMediaIcon"src={etsy} alt="EtsyLogo"/></a></li>
                 
-                <li className={this.state.navBarSelected[4]} onClick={()=>{this.scrollTo(this.ContactMe)}}>Contact Me</li>
-                <li className={this.state.navBarSelected[3]} onClick={()=>{this.scrollTo(this.AboutMe)}}>About Me</li>
+                <li className={this.state.navBarSelected[4]} onClick={()=>{this.scrollTo(this.ContactMeRef)}}>Contact Me</li>
+                <li className={this.state.navBarSelected[3]} onClick={()=>{this.scrollTo(this.AboutMeRef)}}>About Me</li>
                 <li className={this.state.navBarSelected[2]} onClick={()=>{this.scrollTo(this.Events)}}>Events</li>
-                <li className={this.state.navBarSelected[1]} onClick={()=>{this.scrollTo(this.Gallery)}}>Gallery</li>
-                <li className={this.state.navBarSelected[0]} onClick={()=>{this.scrollTo(this.Shop)}}>Shop</li>
+                {(this.state.InstagramImages.length > 1)&&<li className={this.state.navBarSelected[1]} onClick={()=>{this.scrollTo(this.GalleryRef)}}>Gallery</li>}
+                {(this.state.EtsyImages.length > 1)&&<li className={this.state.navBarSelected[0]} onClick={()=>{this.scrollTo(this.ShopRef)}}>Shop</li>}
             </ul>
             <img className="logo"src={logo} alt="logo" onClick={()=>{document.getElementById("main-container").scrollTo(0,0);}}/>
         </nav>        
-      
-        
-        <div className="headerText">
-            <h2 className="lindiName">Lindi Bracelets</h2>
-            <h2 className ="headerBold">Love</h2>
-            <h2 className ="headerReg">what you wear. be</h2>
-            <h2 className ="headerBold">Unique</h2>
-        </div>
-        
-        <div ref={this.Shop} className="shop">
-          <h1 >Shop</h1>
-          <ul>
-           {entireCatalog}
-          </ul>
-        </div>
-
-        <div ref={this.Gallery} className="gallery">
-          <h1>Gallery</h1>
-          <ul>
-            {entireGallery}
-          </ul>
-        </div>
-
-        <div ref={this.Events} className="eventsTitle">
-          <h1>Events</h1>
-          <ul>
-            {allEvents}
-          </ul>
-        </div>
-
-        <div ref={this.AboutMe} className="aboutMe eventsTitle">
-          <h1> About Me</h1>
-
-          <ul>
-            <li className="event">
-              <img src={'https://i.etsystatic.com/isa/d8132b/1911746164/isa_760xN.1911746164_8nx5.jpg?version=0'} alt="eventLocation"/>
-              <div className="eventDescription">
-                <p>
-                  I learned how to crochet from my mom and grandma when I was little. The new high quality thin cotton strings in variety of colors in combination with the beads created new possiblity in front of me. I started making the bracelets in 2017. 
-                </p>
-               </div>
-            </li>
-            <li className="event">
-              <img src={stand} alt="eventLocation"/>
-              <div className="eventDescription">
-                <p>
-                  I love experimenting and incorporating different patterns with the sparkle of the beads and jam stones.
-                  Some bracelets are inspired by the ancient Bulgarian embroidery patterns, and others are sparkling asymmetrically 
-                </p>
-               </div>
-            </li>
-            <li className="event">
-              <img src={aboutme} alt="eventLocation"/>
-              <div className="eventDescription">
-                <p>
-                  I love traveling and nature. I draw inspiration from every place I visit and I encorperate that into the design of my creations
-                  If you like any of my product but you have a different favorite color let me know I would love to make it custom.
-                </p>
-               </div>
-            </li>
-          </ul>
-        </div>
-
-        <ContactMe refs={this.ContactMe}/>
+    
+        <SplashPage/>
+        {this.state.EtsyImages.length > 1 && <Shop ShopRef={this.ShopRef} shop={this.state.EtsyImages}/>}
+        {this.state.InstagramImages.length > 1 && <Gallery GalleryRef={this.GalleryRef} gallery={this.state.InstagramImages}/>}
+        <Events EventsRef={this.EventsRef}/>
+        <AboutMe AboutMeRef={this.AboutMeRef}/>
+        <ContactMe ContactMeRef={this.ContactMeRef}/>
+        <SocialMedia/>
 
 
-        <div className="socialMedia">
-          <p>All rights reserved</p>
-          <ul>
-            <li><a href={"https://www.instagram.com/lindibracelets/"} target="_blank" rel="noreferrer"><img className="socialMediaIcon"src={instagram} alt="FacebookLogo"/></a></li>
-            <li><a href={"https://www.facebook.com/LinDiBracelets/"} target="_blank" rel="noreferrer"><img className="socialMediaIcon"src={facebook} alt="InstagramLogo"/></a></li>
-            <li><a href={"https://www.etsy.com/shop/LinDiBracelets?ref=simple-shop-header-name&listing_id=584303931"} target="_blank" rel="noreferrer"><img className="socialMediaIcon"src={etsy} alt="EtsyLogo"/></a></li>
-          </ul>
-        </div>
 
 
       </div>
