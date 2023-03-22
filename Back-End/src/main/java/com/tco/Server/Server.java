@@ -37,16 +37,19 @@ public class Server
     }
 
     private void configureRestfulApiServer() {
-        https = Service.ignite().port(443).threadPool(20);
-        http = Service.ignite().port(80).threadPool(10);
-        System.out.println("Server configured to listen on port 80 and 443");
+        int port = Integer.parseInt( System.getenv("PORT"));
+        if(!(port > 0)){
+            port = 3000;
+        }
+        http = Service.ignite().port(port).threadPool(10);
+        System.out.println("Server configured to listen on port " + port);
 
         analytics = new Analytics();
 
 
-        String keyStoreLocation = new Config().getRootDirectory() + "/Back-End/src/main/resources/mykeystore.jks";
+        /*String keyStoreLocation = new Config().getRootDirectory() + "/Back-End/src/main/resources/mykeystore.jks";
         String keyStorePassword = "password";
-        https.secure(keyStoreLocation, keyStorePassword, null, null);
+        https.secure(keyStoreLocation, keyStorePassword, null, null);*/
 
         http.staticFiles.location("/public/build");
 
