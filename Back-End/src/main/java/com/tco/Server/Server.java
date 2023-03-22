@@ -37,7 +37,7 @@ public class Server
     }
 
     private void configureRestfulApiServer() {
-        int port = Integer.parseInt( System.getenv("PORT"));
+        int port = Integer.parseInt( System.getenv("PORT")!=null?System.getenv("PORT"):"-1");
         if(!(port > 0)){
             port = 3000;
         }
