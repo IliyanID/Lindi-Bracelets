@@ -48,7 +48,7 @@ public class Server
         String keyStorePassword = "password";
         https.secure(keyStoreLocation, keyStorePassword, null, null);
 
-        https.staticFiles.location("/public/build");
+        http.staticFiles.location("/public/build");
 
         Timer timer = new Timer();
         timer.scheduleAtFixedRate(new TimerTask() {
@@ -71,14 +71,14 @@ public class Server
 
     private void processRestfulApiRequests()
     {
-        https.get("/Analytics",(request,response)->{
+        http.get("/Analytics",(request,response)->{
             response.type("text/html");
             response.header("Access-Control-Allow-Origin","*");
             response.status(200); //Success
             return analytics.returnHTML();
         });
 
-        https.get("/EtsyImages",(request,response)->{
+        http.get("/EtsyImages",(request,response)->{
             response.type("application/json");
             response.header("Access-Control-Allow-Origin","*");
             response.status(200); //Success
@@ -88,7 +88,7 @@ public class Server
             return etsy.getJSONResponse();
         });
 
-        https.get("/InstagramImages",(request,response)->{
+        http.get("/InstagramImages",(request,response)->{
             response.type("application/json");
             response.header("Access-Control-Allow-Origin","*");
             response.status(200); //Success
@@ -97,12 +97,12 @@ public class Server
             return instagram.getJSONResponse();
         });
 
-        https.get("/defaultsite",(request,response)->{
+        http.get("/defaultsite",(request,response)->{
             response.redirect("https://www.lindibracelets.com");
             return "";
         });
 
-        http.before(((request, response) -> {
+        /*http.before(((request, response) -> {
             final String url = request.url();
             if (url.startsWith("http://"))
             {
@@ -110,7 +110,7 @@ public class Server
                 response.redirect("https://" + split[1]);
             }
             
-        }));
+        }));*/
     }
 
     public static void main(String[] args)
