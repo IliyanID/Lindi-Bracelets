@@ -16,7 +16,7 @@ import com.tco.misc.response.Etsy;
 import com.tco.misc.response.Instagram;
 import com.tco.misc.RefreshToken;
 import com.tco.misc.Config;
-
+import java.nio.file.Paths;
 
 public class Server
 {
@@ -51,7 +51,7 @@ public class Server
         String keyStorePassword = "password";
         https.secure(keyStoreLocation, keyStorePassword, null, null);*/
 
-        http.staticFiles.location("/public/build");
+        http.staticFiles.location(Paths.get("/Lindi-Bracelets/Back-End/src/main/resources/public/build").toAbsolutePath().toString());
 
         Timer timer = new Timer();
         timer.scheduleAtFixedRate(new TimerTask() {
