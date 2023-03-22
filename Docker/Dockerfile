@@ -1,4 +1,7 @@
 FROM node:14-alpine
+
+ENV PORT=3000
+
 RUN apk update
 RUN apk add git
 RUN apk add maven
@@ -12,5 +15,4 @@ RUN cd /Lindi-Bracelets/Back-End && mvn -q package
 WORKDIR /Lindi-Bracelets/Back-End/target
 
 ENTRYPOINT java -jar Server-2.0-jar-with-dependencies.jar
-EXPOSE 443
-EXPOSE 80
+EXPOSE 3000
