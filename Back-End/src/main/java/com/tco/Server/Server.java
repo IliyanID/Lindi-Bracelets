@@ -50,7 +50,7 @@ public class Server
         /*String keyStoreLocation = new Config().getRootDirectory() + "/Back-End/src/main/resources/mykeystore.jks";
         String keyStorePassword = "password";
         https.secure(keyStoreLocation, keyStorePassword, null, null);*/
-        String staticFilesDir = getClass().getResource("/public/build").getPath();
+        String staticFilesDir = getClass().getResource("/public").getPath();
         System.out.println("Serving static files from " + staticFilesDir);
     
         http.staticFiles.location("/public/build");
